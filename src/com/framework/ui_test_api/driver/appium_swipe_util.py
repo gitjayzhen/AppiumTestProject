@@ -9,7 +9,7 @@ y:开始的坐标点到终止的坐标点
 duration:滑动的时间（默认：5毫秒）
 '''
 
-class AppSwipeUtil():
+class AppSwipe():
 
     def __init__(self,driver):
         self.driver = driver
