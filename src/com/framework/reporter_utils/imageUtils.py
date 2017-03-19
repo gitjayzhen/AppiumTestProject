@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-'''
-Created on 2015年4月28日
-
-@author: xuxu
-'''
 
 #图片处理，需要PIL库
 
