@@ -69,7 +69,7 @@ class AppTouchAction():
          - originalEl - the element from which to being scrolling
          - destinationEl - the element to scroll to
         :Usage:
-            driver.scroll(el1, el2)
+            appium_driver.scroll(el1, el2)
         """
         return self
 
@@ -91,7 +91,7 @@ class AppTouchAction():
          - end_x - x-coordinate at which to stop
          - end_y - y-coordinate at which to stop
         :Usage:
-            driver.flick(100, 100, 100, 400)
+            appium_driver.flick(100, 100, 100, 400)
         """
         return self
 
