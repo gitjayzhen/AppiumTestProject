@@ -2,9 +2,9 @@
 import os
 import re
 import time
-from com.framework.ui_test_api.adb.commond import AdbCmder
+from com.framework.core.adb.commond import AdbCmder
 
-class DeviceInfo():
+class DeviceController():
     def __init__(self):
         self.android = AdbCmder()
     '''
@@ -29,6 +29,7 @@ class DeviceInfo():
                 info[sno] = {"phone_brand":phone_brand,"phone_model":phone_model,"ram":ram,"os_version":os_version,"dpi":dpi,"image_resolution":image_resolution,"ip":ip}
             return info
         except TypeError,e:
+            print e
             return None
 
     def get_devices_as_list(self):

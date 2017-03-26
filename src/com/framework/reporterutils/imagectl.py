@@ -13,7 +13,7 @@ from adbUtils import ADB
 
 PATH = lambda p: os.path.abspath(p)
 
-class ImageUtils(object):
+class ImageController(object):
 
     def __init__(self, device_id=""):
         """

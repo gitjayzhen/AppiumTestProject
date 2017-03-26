@@ -2,52 +2,52 @@
 # coding=utf-8
 
 import os
+import sys
 import platform
 import subprocess
 import re
 from time import sleep
-from com.framework.ui_test_api.appium_driver import event_keys
+from com.framework.core.appiumdriver import eventkeys
 
-
-PATH = lambda p: os.path.abspath(p)
-
-# 判断系统类型，windows使用findstr，linux使用grep
-system = platform.system()
-if system is "Windows":
-    find_util = "findstr"
-else:
-    find_util = "grep"
-
-# 判断是否设置环境变量ANDROID_HOME
-if "ANDROID_HOME" in os.environ:
-    if system == "Windows":
-        command = os.path.join(os.environ["ANDROID_HOME"], "platform-tools", "adb.exe")
-    else:
-        command = os.path.join(os.environ["ANDROID_HOME"], "platform-tools", "adb")
-else:
-    raise EnvironmentError(
-        "Adb not found in $ANDROID_HOME path: %s." % os.environ["ANDROID_HOME"])
-
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class AdbCmder(object):
-    """
-    单个设备，可不传入参数device_id
-    """
-    def __init__(self, device_id = ""):
-        if device_id == "":
-            self.device_id = ""
+    def __init__(self):
+        self.system = None
+        self.find_type = None
+        self.command = "adb"
+
+    def judgment_system_type(self):
+        # 判断系统类型，windows使用findstr，linux使用grep
+        self.system = platform.system()
+        if self.system is "Windows":
+            self.find_type = "findstr"
         else:
-            self.device_id = "-s %s" %device_id
+            self.find_type = "grep"
 
+    def judgment_system_environment_variables(self):
+        self.judgment_system_type()
+        # 判断是否设置环境变量ANDROID_HOME
+        if "ANDROID_HOME" in os.environ:
+            if self.system == "Windows":
+                self.command = "adb"  # os.path.join(os.environ["ANDROID_HOME"], "platform-tools", "adb.exe")
+            else:
+                self.command = os.path.join(os.environ["ANDROID_HOME"], "platform-tools", "adb")
+        else:
+            raise EnvironmentError(
+                "Adb not found in $ANDROID_HOME path: %s." % os.environ["ANDROID_HOME"])
 
-    # adb命令
-    def adb(self, args):
-        cmd = "%s %s %s" % (command, self.device_id, str(args))
+            # adb命令
+
+    def adb(self, serialno_num, args):
+        cmd = "%s -s %s %s" % (self.command, serialno_num, str(args))
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    # adb shell命令
-    def shell(self, args):
-        cmd = "%s %s shell %s" % (command, self.device_id, str(args))
+
+        # adb shell命令
+    def shell(self, serialno_num, args):
+        cmd = "%s -s %s shell %s" % (self.command, serialno_num, str(args))
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def get_device_state(self):
@@ -61,6 +61,17 @@ class AdbCmder(object):
         获取设备id号，return serialNo
         """
         return self.adb("get-serialno").stdout.read().strip()
+
+    def get_device_list(self):
+        devices = []
+        result = subprocess.Popen("adb devices", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
+        result.reverse()  #将readlines结果反向排序
+        for line in result[1:]:
+            if "attached" not in line.strip():
+                devices.append(line.split()[0])
+            else:
+                break
+        return devices
 
     def get_android_os_version(self):
         """
@@ -121,26 +132,29 @@ class AdbCmder(object):
         """
         self.shell("am force-stop %s" % packageName)
 
-    def get_focused_package_and_activity(self):
+    def get_focused_package_and_activity_2(self):
+        pattern = re.compile(r"[a-zA-Z0-9\.]+/.[a-zA-Z0-9\.]+")
+        out = self.shell("dumpsys window w | %s \/ | %s name=" % (find_util, find_util)).stdout.read()
+        return pattern.findall(out)[0]
+
+    def get_focused_package_and_activity(self,sno):
         """
         获取当前应用界面的包名和Activity，返回的字符串格式为：packageName/activityName
         """
-        pattern = re.compile(r"[a-zA-Z0-9\.]+/.[a-zA-Z0-9\.]+")
-        out = self.shell("dumpsys window w | %s \/ | %s name=" % (find_util, find_util)).stdout.read()
+        return self.shell(sno,"dumpsys activity | findstr mFocusedActivity").stdout.read().split()[-2]
 
-        return pattern.findall(out)[0]
+    def get_current_package_name(self, sno):
+        """
+         获取当前运行应用的activity
+         """
+        return self.get_focused_package_and_activity(sno).split("/")[0]
 
-    def get_current_package_name(self):
+    def get_current_activity(self,sno):
         """
-        获取当前运行的应用的包名
+        获取当前设备的activity
         """
-        return self.getFocusedPackageAndActivity().split("/")[0]
+        return self.get_focused_package_and_activity(sno).split("/")[-1]
 
-    def get_current_activity(self):
-        """
-        获取当前运行应用的activity
-        """
-        return self.getFocusedPackageAndActivity().split("/")[-1]
     def get_battery_level(self):
         """
         获取电池电量

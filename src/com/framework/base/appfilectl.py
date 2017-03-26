@@ -5,7 +5,7 @@ import re
 class ApkController():
 
     '''
-    初始化就先确认存放apk文件的路径。
+    初始化就先确认存放apk文件的路径,通过config目录的中apk path文件来获取配置文件中path。
     '''
     def __init__(self):
         # absp = os.getcwd()
@@ -46,10 +46,8 @@ class ApkController():
         try:
             abspath = os.path.join(self.result_dir,apkName)
             if not os.path.exists(abspath):
-                easygui.msgbox('>>>None apk file to REMOVE')
                 return None
         except TypeError,e:
-            easygui.msgbox('You cant choices one apk file for install ,so apkAbsPath happend TypeError')
             return None
         return abspath
 

@@ -7,7 +7,7 @@ __author__ = "xuxu"
 
 PATH = lambda p: os.path.abspath(p)
 
-class Log(object):
+class LogController(object):
 
     def __init__(self, logPath, fileName):
         self.path = logPath

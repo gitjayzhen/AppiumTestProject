@@ -10,7 +10,7 @@ from adbUtils import ADB
 
 PATH = lambda p: os.path.abspath(p)
 
-class Element(object):
+class ElementController(object):
     """
     通过元素定位
     """

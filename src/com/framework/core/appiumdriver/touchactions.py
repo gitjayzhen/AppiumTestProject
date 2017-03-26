@@ -51,11 +51,13 @@ class AppTouchAction():
         Places two fingers at the edges of the screen and brings them together. 在 0% 到 100% 内双指缩放屏幕，
         '''
         driver.pinch(element=el)
+
     def zoom(self):
         '''
         放大屏幕 在 100% 以上放大屏幕
         '''
         driver.zoom(element=el)
+
     def shake(self):
         '''
         模拟设备摇晃
@@ -63,6 +65,7 @@ class AppTouchAction():
         driver.shake()
 
  # convenience method added to Appium (NOT Selenium 3)
+
     def scroll(self, origin_el, destination_el):
         """Scrolls from one element to another
         :Args:
