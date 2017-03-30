@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-
+"""
+@version: python2.7
+@author: ‘dell‘
+@contact: jayzhen_testing@163.com
+@site: https://github.com/gitjayzhen
+@software: PyCharm Community Edition
+@time: 2017/3/29  13:12
+"""
 
 #图片处理，需要PIL库
 
@@ -8,8 +15,7 @@ import tempfile
 import os
 import shutil
 from PIL import Image
-
-from adbUtils import ADB
+from com.framework.core.adb.commond import AdbCmder
 
 PATH = lambda p: os.path.abspath(p)
 
@@ -19,7 +25,7 @@ class ImageController(object):
         """
         初始化，获取系统临时文件存放目录
         """
-        self.utils = ADB(device_id)
+        self.utils = AdbCmder()
         self.tempFile = tempfile.gettempdir()
 
     def screenShot(self):

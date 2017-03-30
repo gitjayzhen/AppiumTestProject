@@ -1,9 +1,15 @@
 #!/usr/bin/env python
-
+# -*- coding:utf-8 -*-
+"""
+@version: python2.7
+@author: ‘dell‘
+@contact: jayzhen_testing@163.com
+@site: https://github.com/gitjayzhen
+@software: PyCharm Community Edition
+@time: 2017/3/29  13:12
+"""
 import os
 import time
-
-__author__ = "xuxu"
 
 PATH = lambda p: os.path.abspath(p)
 

@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 
+from appium.webdriver..touch_action import TouchAction
+
+from com.framework.utils.reporterutils import LoggingController
+
+
 class AppTouchAction():
     def __init__(self, driver=None):
-        self._driver = driver
-        self._actions = []
+        self.driver = driver
+        self.taction = TouchAction(self.driver)
+        self.actions = []
+        self.log4py = LoggingController()
 
-    def tap(self, element=None, x=None, y=None, count=1):
+    def tap_element(self,elemnt):
         """Perform a tap action on the element
         :Args:
          - element - the element to tap
@@ -13,7 +20,8 @@ class AppTouchAction():
          - y - (optional) y coordinate. If y is used, x must also be set, and vice versa
         :Usage:
         """
-        return self
+        self.taction.tap(elemnt,10,10).perform()
+        self.log4py.info("appium driver do touch action at element:%s"%(str(elemnt)))
 
     def press(self, el=None, x=None, y=None):
         """Begin a chain with a press down action at a particular element or point

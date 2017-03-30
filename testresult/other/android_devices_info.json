@@ -1,0 +1,101 @@
+{
+    "006f7d8760d5074b": {
+        "dpi": "320",
+        "image_resolution": "768x1280",
+        "ip": "172.24.91.8",
+        "os_version": "4.2.2",
+        "phone_brand": "Android",
+        "phone_model": "Full JellyBean on Mako",
+        "ram": "2GB"
+    },
+    "091504e9": {
+        "dpi": "480",
+        "image_resolution": "1080x1920",
+        "ip": "30.96.97.216",
+        "os_version": "4.4.4",
+        "phone_brand": "Xiaomi",
+        "phone_model": "MI 3",
+        "ram": "2GB"
+    },
+    "84534ad1": {
+        "dpi": "480",
+        "image_resolution": "1080x1920",
+        "ip": "192.168.1.100",
+        "os_version": "5.1.1",
+        "phone_brand": "OPPO",
+        "phone_model": "OPPO R9 Plusm A",
+        "ram": "4GB"
+    },
+    "90d1894b7d62": {
+        "dpi": "320",
+        "image_resolution": "720x1280",
+        "ip": "192.168.1.101",
+        "os_version": "5.1.1",
+        "phone_brand": "Xiaomi",
+        "phone_model": "wt86047",
+        "ram": "2GB"
+    },
+    "A3P4CE771775": {
+        "dpi": "320",
+        "image_resolution": "1536x2048",
+        "ip": "30.96.93.160",
+        "os_version": "5.1",
+        "phone_brand": "Xiaomi",
+        "phone_model": "MI PAD 2",
+        "ram": "2GB"
+    },
+    "APU0215C05001561": {
+        "dpi": "480",
+        "image_resolution": "1080x1920",
+        "ip": "",
+        "os_version": "6.0",
+        "phone_brand": "HUAWEI",
+        "phone_model": "NEXT",
+        "ram": "3GB"
+    },
+    "B2T7N16908000353": {
+        "dpi": "480",
+        "image_resolution": "1080x1920",
+        "ip": "",
+        "os_version": "7.0",
+        "phone_brand": "Huawei",
+        "phone_model": "generic_a15",
+        "ram": "3GB"
+    },
+    "BY3ETK1596002574": {
+        "dpi": "320",
+        "image_resolution": "720x1280",
+        "ip": "172.24.91.9",
+        "os_version": "4.4.2",
+        "phone_brand": "hi6210sft",
+        "phone_model": "Huawei Ascend",
+        "ram": "1GB"
+    },
+    "NX505J": {
+        "dpi": "400",
+        "image_resolution": "1080x1920",
+        "ip": "172.28.112.3",
+        "os_version": "4.4.2",
+        "phone_brand": "nubia",
+        "phone_model": "NX505J",
+        "ram": "2GB"
+    },
+    "TWP7LJ55OZTCTSVK": {
+        "dpi": "480",
+        "image_resolution": "1080x1920",
+        "ip": "30.96.97.141",
+        "os_version": "5.1",
+        "phone_brand": "OPPO",
+        "phone_model": "OPPO R9m",
+        "ram": "4GB"
+    },
+    "VSKVEMLZ79R4O78L": {
+        "dpi": "480",
+        "image_resolution": "1080x1920",
+        "ip": "192.168.1.124",
+        "os_version": "5.1",
+        "phone_brand": "vivo",
+        "phone_model": "PD1501D x6plus",
+        "ram": "4GB"
+    }
+}
