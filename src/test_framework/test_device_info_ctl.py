@@ -17,18 +17,13 @@ from com.framework.base.deviceinfoctl import DeviceController
 class TestDeviceinfo(unittest.TestCase):
     def setUp(self):
         self.dd = DeviceController()
-        self.dl = self.dd.get_devices()
+
     def tearDown(self):
         pass
 
     def test_get_devices_as_dict(self):
-        print  self.dd.get_devices_as_dict()
-    def test_current_package_name(self):
-        s = self.dl[0]
-        print self.dd.current_package_name(s)
-    def test_current_activity(self):
-        s = self.dl[0]
-        print self.dd.current_activity(s)
+        print  self.dd.get_infos_as_dict()
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -8,13 +8,18 @@ import re
 import time
 import subprocess
 from appium import webdriver
+from com.framework.utils.reporterutils.loggingctl import LoggingController
 
-class InitDriverOption():
+
+class InitDriverOption(object):
+    def __init__(self):
+        self.log4py = LoggingController()
 
     def __get_devices(self):
         devices = []
         result = subprocess.Popen("adb devices", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
-        result.reverse()  #将readlines结果反向排序
+        # 将readlines结果反向排序
+        result.reverse()
         for line in result[1:]:
             if "attached" not in line.strip():
                 devices.append(line.split()[0])
@@ -22,7 +27,7 @@ class InitDriverOption():
                 break
         return devices
 
-    def __get_info(self,sno):
+    def __get_info(self, sno):
         phone_brand = None
         phone_model = None
         os_version = None
@@ -44,9 +49,9 @@ class InitDriverOption():
                 #手机IP
                 elif re.search(r'dhcp\.wlan0\.ipaddress', res):
                     ip = (res.split(': ')[-1].strip())[1:-1]
-            return sno,phone_brand,phone_model,os_version,ip
+            return sno, phone_brand, phone_model, os_version, ip
         except Exception,e:
-            print ">>> Get device info happend ERROR :"+ str(e)
+            self.log4py.error("Get device info happend ERROR :" + str(e))
             return None
 
     def get_device_infos_as_dict(self):
@@ -54,14 +59,14 @@ class InitDriverOption():
             info = {}
             lists = self.__get_devices()
             if not lists or len(lists) <= 0:
-                print ">>>NO Device connected"
+                self.log4py.info("NO Device connected")
                 return None
             for sno in lists:
                 sno,phone_brand,phone_model,os_version,ip = self.__get_info(sno)
                 info[sno] = {"phone_brand":phone_brand,"phone_model":phone_model,"os_version":os_version,"ip":ip}
             return info
         except TypeError,e:
-            print "func get_device_infos_as_dict happend ERROR!!!"
+            self.log4py.error("func get_device_infos_as_dict happend ERROR!!!")
             return None
 
     def get_desired_capabilities(self):
@@ -76,9 +81,9 @@ class InitDriverOption():
         return desired_caps
 
     def get_android_driver(self):
-        # kill_package_process("com.youku.phone")
         desired_caps = self.get_desired_capabilities()
         driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+        driver.wait_activity("com.youku.phone/com.youku.ui.activity.HomePageActivity", 10)
         return driver
 
 

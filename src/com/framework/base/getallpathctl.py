@@ -12,7 +12,9 @@
 from com.framework.utils.fileutils.configcommonctl import ConfigController
 from com.framework.utils.fileutils.filecheckandgetpath import FileChecKController
 from com.framework.utils.reporterutils.loggingctl import LoggingController
+import os
 
+PATH = lambda a: os.path.abspath(a)
 
 class GetAllPathController():
     def __init__(self):
@@ -21,23 +23,43 @@ class GetAllPathController():
             fp = self.fkctl.get_fileabspath()
         self.cfgctl = ConfigController(fp)
         self.log4py = LoggingController()
+        self.pro_path = self.fkctl.get_project_path()
 
     def get_dumpxml_path(self):
         self.log4py.info("executive -get_dumpxml_path- function ")
-        return self.cfgctl.get("dumpxmlPath","dumpxmlPath")
+        path = os.path.join(self.pro_path,self.cfgctl.get("dumpxmlPath","dumpxmlPath"))
+        if PATH(path):
+            self.log4py.info("获取 %s"%path)
+            return path
+        return None
 
     def get_htmlreport_path(self):
         self.log4py.info("executive -get_htmlreport_path- function ")
-        return self.cfgctl.get("htmlreportPath","htmlreportPath")
+        path = os.path.join(self.pro_path, self.cfgctl.get("htmlreportPath","htmlreportPath"))
+        if PATH(path):
+            self.log4py.info("获取 %s" % path)
+            return path
+        return None
 
     def get_logs_path(self):
         self.log4py.info("executive -get_logs_path- function ")
-        return self.cfgctl.get("logsPath","logsPath")
+        path = os.path.join(self.pro_path, self.cfgctl.get("logsPath","logsPath"))
+        if PATH(path):
+            self.log4py.info("获取 %s" % path)
+            return path
+        return None
 
     def get_capture_path(self):
-        self.log4py.info("executive -get_capture_path- function ")
-        return self.cfgctl.get("capturePath","capturePath")
+        self.log4py.info("executive -get_logs_path- function ")
+        path = os.path.join(self.pro_path,self.cfgctl.get("capturePath","capturePath"))
+        if PATH(path):
+            self.log4py.info("获取 %s" % path)
+            return path
+        return None
 
-if __name__ == "__main__":
-    gp = GetAllPathController()
-    print gp.get_capture_path()
+# if __name__ == "__main__":
+#     gp = GetAllPathController()
+#     print gp.get_dumpxml_path()
+#     print gp.get_capture_path()
+#     print gp.get_htmlreport_path()
+#     print gp.get_logs_path()
