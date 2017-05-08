@@ -16,7 +16,9 @@ sys.setdefaultencoding('utf8')
 
 
 class AdbCmder(object):
-    #利用可变参数来初始化*（tuple），**（dict）:约定参数中的key只能是sno
+    '''
+        利用可变参数来初始化*（tuple），**（dict）:约定参数中的key只能是sno
+    '''
     def __init__(self, **serialno_num):
         self.system = None
         self.find_type = None

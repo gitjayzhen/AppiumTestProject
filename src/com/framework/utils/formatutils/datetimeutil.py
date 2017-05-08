@@ -13,7 +13,8 @@ import time
 import datetime
 import calendar
 
-class DateTimeManager():
+
+class DateTimeManager(object):
 
     '''
      * 获取系统当前日期和时间并格式化为yyyyMMddHHmmss即类似20110810155638格式
@@ -60,8 +61,8 @@ class DateTimeManager():
      * @param format：时间格式化如yyyy-MM-dd HH:mm:ss:SSS  "%Y%m%d%H%M%S%f"
      * @return 根据自定义格式化返回系统当前时间
      '''
-    def formatedTime(self,formatime):
-        return datetime.datetime.now().strftime(formatime)
+    def formated_time(self, format_time):
+        return datetime.datetime.now().strftime(format_time)
     '''
      * get specified time string in specified date format.
      * @param days

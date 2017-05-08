@@ -1,7 +1,7 @@
 import unittest
 from com.framework.core.appiumdriver.appiumbaseapi import AppiumDriver
 from com.framework.core.initdriver.initappiumdriver import InitDriverOption
-import subprocess
+from appium.webdriver.common.mobileby import By
 
 
 class TestAppiumBaseApi(unittest.TestCase):
@@ -12,8 +12,16 @@ class TestAppiumBaseApi(unittest.TestCase):
     def tearDown(self):
         self.drvier.quit()
 
-    def test_by_id(self):
-        self.appiumapi.find_element_By_Id("test")
+    @unittest.skip("skip 'test_is_displayed' func")
+    def test_is_displayed(self):
+        print self.appiumapi.is_displayed(By.ID, "com.youku.phone:id/img_user")
+
+    @unittest.skip("skip 'test_find_element_by_want' func")
+    def test_find_element_by_want(self):
+        print self.appiumapi.find_element_by_want(By.ID, "com.youku.phone:id/img_user", 5)
+
+    def test_get_current_activity(self):
+        print self.appiumapi.get_current_activity()
 
 
 if __name__ == '__main__':
