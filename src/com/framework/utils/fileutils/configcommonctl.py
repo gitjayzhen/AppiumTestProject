@@ -13,6 +13,7 @@
 import sys
 import ConfigParser
 
+
 class ConfigController():
 
     def __init__(self, path):

@@ -1,8 +1,11 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-class SriptException(Exception):
-    def __init__(self, str):
-        self.str = str
+
+class ScriptException(Exception):
+    def __init__(self, str_param):
+        self.str_param = str_param
 
     def _str_(self):
-        return self.str
+        return self.str_param
+

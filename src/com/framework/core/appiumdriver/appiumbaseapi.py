@@ -122,7 +122,7 @@ class AppiumDriver(object):
         self.log4py.debug("find elements [" + str(value) + "]")
         elements = None
         time_begins = time.time()
-        while (time.time() - time_begins <= timeout):
+        while (time.time() - time_begins) <= timeout:
             try:
                 elements = self.driver.find_elements(by, value)
                 is_succeed = True
@@ -130,7 +130,7 @@ class AppiumDriver(object):
                 break
             except Exception, e:
                 self.log4py.error(e)
-        self.operation_check("find_elements_by_want", is_succeed)
+        self.operation_check("find_elements", is_succeed)
         return elements
 
     def is_element_checked_by_want(self, by, name):

@@ -12,7 +12,8 @@ import json
 from com.framework.utils.fileutils.filecheckandgetpath import FileChecKController
 from com.framework.utils.reporterutils.loggingctl import LoggingController
 
-class JsonParser():
+
+class JsonParser(object):
     def __init__(self):
         self.json_obj = None
         self.fc = FileChecKController()
@@ -25,13 +26,13 @@ class JsonParser():
         try:
             json_obj = json.load(fin)
             self.log4py.info("加载了%s文件"%json_file_path)
-        except ValueError,e:
+        except ValueError, e:
             json_obj = {}
         fin.close()
         return json_obj
 
-    def get_value_with_key(self,json_key):
-        return value
+    def get_value_with_key(self, json_key):
+        pass
 
     def put_key_value(self,dict_data):
         try:

@@ -25,3 +25,7 @@ pathconfig.ini中的配置所需项的相对路径，通过getallpath调用confi
 #20170405
 1.第一封装层的api，不应该有超过3复杂度的设计<br>
 2.上层如果存在单一的逻辑直接写入底并提供调用方法
+
+#20170508
+1.使用mysqldb操作数据库<br>
+2.使用xlrd、xlwt和xlutils操作Excel文件

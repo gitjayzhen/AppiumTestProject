@@ -13,9 +13,9 @@ import zipfile
 
 #解压zip文件 
 def unzip(): 
-    source_zip="c:\\update\\SW_Servers_20120815.zip" 
-    target_dir="c:\\update\\" 
-    myzip=ZipFile(source_zip) 
+    source_zip = "c:\\update\\SW_Servers_20120815.zip"
+    target_dir = "c:\\update\\"
+    myzip = zipfile(source_zip)
     myfilelist=myzip.namelist() 
     for name in myfilelist: 
         f_handle=open(target_dir+name,"wb") 

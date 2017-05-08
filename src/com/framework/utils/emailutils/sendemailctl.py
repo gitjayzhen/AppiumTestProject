@@ -17,7 +17,8 @@ from com.framework.utils.fileutils.filecheckandgetpath import FileChecKControlle
 from com.framework.utils.fileutils.configcommonctl import ConfigController
 from com.framework.utils.reporterutils.loggingctl import LoggingController
 
-class EmailController():
+
+class EmailController(object):
 
     def __init__(self):
         self.fc = FileChecKController()
@@ -33,7 +34,6 @@ class EmailController():
             self.sender_pa =conf.get("emails", "sender_pa")
         self.log4py = LoggingController()
             
-        
     def send_email_is_html(self):
         latestfpath,fname,currentfolder = self.fc.get_LatestFile()
         msgRoot = MIMEMultipart('related')
@@ -87,5 +87,4 @@ class EmailController():
             self.log4py.error("Error: 无法发送邮件::"+str(e))
             print e
             
-    
     
