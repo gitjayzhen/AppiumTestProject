@@ -9,6 +9,8 @@ __pycache__/
 # Distribution / packaging
 .Python
 .idea/
+testresult/logs4script/
+testresult/logs4appium/
 env/
 build/
 develop-eggs/
