@@ -1,0 +1,10 @@
+[Appium] Welcome to Appium v1.6.3
+[Appium] Non-default server args:
+[Appium]   port: 4490
+[Appium]   bootstrapPort: 2233
+[Appium]   udid: '90d1894b7d62'
+[Appium] Deprecated server args:
+[Appium]   -U,--udid => --default-capabilities '{"udid":"90d1894b7d62"}'
+[Appium] Default capabilities, which will be added to each request unless overridden by desired capabilities:
+[Appium]   udid: '90d1894b7d62'
+[Appium] Appium REST http interface listener started on 0.0.0.0:4490

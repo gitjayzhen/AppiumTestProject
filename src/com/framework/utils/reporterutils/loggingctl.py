@@ -16,14 +16,16 @@ import logging
 import inspect
 
 abspath = os.getcwd()
-logfilepath = abspath.split("src")[0] #当前项目的目录
+logfilepath = abspath.split("src")[0] + "testresult\\logs4script\\"    #当前项目的目录
+if not os.path.exists(logfilepath):
+    os.makedirs(logfilepath)
+handlers = {logging.NOTSET: os.path.join(logfilepath, "log-notset.log"),
+            logging.DEBUG: os.path.join(logfilepath, "log-debug.log"),
+            logging.INFO: os.path.join(logfilepath, "log-info.log"),
+            logging.WARNING: os.path.join(logfilepath, "log-warning.log"),
+            logging.ERROR: os.path.join(logfilepath, "log-error.log"),
+            logging.CRITICAL: os.path.join(logfilepath, "log-critical.log")}
 
-handlers = {logging.NOTSET: os.path.join(logfilepath,"testresult\\logs\\LOG-notset.log"),
-            logging.DEBUG: os.path.join(logfilepath,"testresult\\logs\\LOG-debug.log"),
-            logging.INFO: os.path.join(logfilepath,"testresult\\logs\\LOG-info.log"),
-            logging.WARNING: os.path.join(logfilepath,"testresult\\logs\\LOG-warning.log"),
-            logging.ERROR: os.path.join(logfilepath,"testresult\\logs\\LOG-error.log"),
-            logging.CRITICAL: os.path.join(logfilepath,"testresult\\logs\\LOG-critical.log")}
 
 def create_file_handlers():
     logLevels = handlers.keys()

@@ -29,3 +29,18 @@ pathconfig.ini中的配置所需项的相对路径，通过getallpath调用confi
 #20170508
 1.使用mysqldb操作数据库<br>
 2.使用xlrd、xlwt和xlutils操作Excel文件
+
+#20170513
+1.如何进行多台设备进行同时执行<br>
+                -p：监听端口    -bp：连接设备的端口号   -U:连接物理设备的唯一设备标识符<br>
+    启动对各服务端：appium -p 4492 -bp 2251 -U udid_num<br>
+                 appium -p 4493 -bp 2252 -U udid_num2<br>
+                 ......<br>
+    客户端多个连接：在脚本的capabilities.setCapability("udid","udid_num")<br>
+                 driver.remote("http://127.0.0.1:4492/wd/hub",cpabilities<br>
+                 udid和对应启动的服务器的端口保持一致<br>
+    <p>端口生成、doc命令执行、获取设备列表、启动多服务器</p>
+    
+2.现在做的逻辑就是：获取当前连接的设备数，启动相同数量的服务器并分配好未被占用的端口，同时要确认每个设备连接的是独立的服务端口
+那么脚本必须做到多线程执行，不然会报错
+

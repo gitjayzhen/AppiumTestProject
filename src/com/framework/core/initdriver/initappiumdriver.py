@@ -62,10 +62,10 @@ class InitDriverOption(object):
                 self.log4py.info("NO Device connected")
                 return None
             for sno in lists:
-                sno,phone_brand,phone_model,os_version,ip = self.__get_info(sno)
-                info[sno] = {"phone_brand":phone_brand,"phone_model":phone_model,"os_version":os_version,"ip":ip}
+                sno, phone_brand, phone_model, os_version, ip = self.__get_info(sno)
+                info[sno] = {"phone_brand": phone_brand, "phone_model": phone_model, "os_version":os_version,"ip":ip}
             return info
-        except TypeError,e:
+        except TypeError, e:
             self.log4py.error("func get_device_infos_as_dict happend ERROR!!!")
             return None
 
@@ -73,11 +73,16 @@ class InitDriverOption(object):
         info = self.get_device_infos_as_dict()
         desired_caps = {}
         desired_caps['platformName'] = 'Android'
+        #desired_caps['noSign'] = 'ture'
+        #支持中文
+        desired_caps['unicodeKeyboard'] = 'True'
+        desired_caps['resetKeyboard'] = 'True'
         desired_caps['appPackage'] = 'com.youku.phone'
         desired_caps['appActivity'] = '.ActivityWelcome'
         for i in info:
             desired_caps['platformVersion'] = info[i]["os_version"]
             desired_caps['deviceName'] = i
+            desired_caps['udid'] = i
         return desired_caps
 
     def get_android_driver(self):

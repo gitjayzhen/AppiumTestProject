@@ -26,7 +26,7 @@ class FileChecKController():
     '''
     是否存在指定的文件，路径默认为当前项目的目录
     '''
-    def is_has_file(self,filename):
+    def is_has_file(self, filename):
         propath = self.get_project_path()
         boolean = self.is_path_has_file(propath, filename)
         return boolean
@@ -41,16 +41,16 @@ class FileChecKController():
     '''
    扫描指定目录下的所有文件，找到所要找的文件，return True or False
      '''
-    def check_has_file(self,path,filename):
+    def check_has_file(self, path, filename):
         try:
-            for filep,dirs,filelist in os.walk(path):
+            for filep, dirs, filelist in os.walk(path):
                 for fl in filelist:
-                    if cmp(fl,filename)==0:    #这个字符串的比较存在风险，python3不支持，待修改
-                        self.__fileabspath = os.path.join(filep,fl)
+                    if cmp(fl, filename) == 0:    #这个字符串的比较存在风险，python3不支持，待修改
+                        self.__fileabspath = os.path.join(filep, fl)
                         self.__logger.info("查找的%s文件存在" %filename)
                         return True
             return False
-        except Exception,e:
+        except Exception, e:
             self.__logger.error("check_has_file()方法出现异常",e)
 
     '''
@@ -75,16 +75,16 @@ class FileChecKController():
         pro_path = self.get_project_path()
         rpath = "TestResult\Reports"
         result_dir = os.path.join(pro_path,rpath)
-        l=os.listdir(result_dir)  #该目录下的文件list
+        l = os.listdir(result_dir)  #该目录下的文件list
         #对key进行升序排列（变量fn是每个文件或者文件夹的全称，如果fn是不是文件夹或者是0，那就获取该文件的创建时间，排序后的最后一个文件就是最新的文件了）
         st = l.sort(key=lambda fn: os.path.getmtime(result_dir+"\\"+fn) if not os.path.isdir(result_dir+"\\"+fn) else 0)    #第二句
-        d=datetime.datetime.fromtimestamp(os.path.getmtime(result_dir+"\\"+l[-1]))
+        d = datetime.datetime.fromtimestamp(os.path.getmtime(result_dir+"\\"+l[-1]))
         fname = l[-1]
-        fpath = os.path.join(result_dir,fname)
+        fpath = os.path.join(result_dir, fname)
         self.__logger.debug('last file is ::'+fpath)
-        time_end=time.mktime(d.timetuple())
+        time_end = time.mktime(d.timetuple())
         self.__logger.debug('time_end:%s'%time_end)
-        return fpath,fname,result_dir   #fpath:html文件的全目录,fname：最新html文件名,result_dir：html文件当前所处文件夹路径
+        return fpath, fname, result_dir   #fpath:html文件的全目录,fname：最新html文件名,result_dir：html文件当前所处文件夹路径
 
 
 
