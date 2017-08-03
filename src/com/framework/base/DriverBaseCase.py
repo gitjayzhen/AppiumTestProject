@@ -1,9 +1,13 @@
-# -*- coding:UTF-8 -*-
-
-'''
-Created on 2016年4月28日
+#!/usr/bin/env python
+# -*-coding=utf8 -*-
+"""
+@version: v1.0
 @author: jayzhen
-'''
+@license: Apache Licence
+@contact: jayzhen_testing@163.com
+@site: http://blog.csdn.net/u013948858
+@software: PyCharm
+"""
 
 from com.framework.logging.Recoed_Logging import LogObj
 from com.framework.util.DateTimeUtil import DateTimeManager

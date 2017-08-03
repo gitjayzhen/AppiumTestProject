@@ -1,13 +1,19 @@
 #!/usr/bin/env python
-# -*- coding:utf8 -*-
+# -*-coding=utf8 -*-
+"""
+@version: v1.0
+@author: jayzhen
+@license: Apache Licence
+@contact: jayzhen_testing@163.com
+@site: http://blog.csdn.net/u013948858
+@software: PyCharm
 
-'''
 函数封装：
 1.appium的滑动api：swipe(int startx,int starty,int endx,int endy,duration)
 x:开始的坐标点到终止的坐标点
 y:开始的坐标点到终止的坐标点
 duration:滑动的时间（默认：5毫秒）
-'''
+"""
 
 class AppSwipe():
 

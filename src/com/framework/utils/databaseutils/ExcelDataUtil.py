@@ -1,7 +1,13 @@
 #!/usr/bin/env python
-# -*- coding:utf-8 -*-
-
+# -*-coding=utf8 -*-
 """
+@version: v1.0
+@author: jayzhen
+@license: Apache Licence
+@contact: jayzhen_testing@163.com
+@site: http://blog.csdn.net/u013948858
+@software: PyCharm
+
 python实现读取Excel文件中的内容
 准备：环境中必须有相关的包
 1.找到文件所在路径

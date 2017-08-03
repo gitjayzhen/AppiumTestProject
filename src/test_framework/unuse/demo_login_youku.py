@@ -1,7 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*-coding=utf8 -*-
 """
+@version: v1.0
 @author: jayzhen
+@license: Apache Licence
+@contact: jayzhen_testing@163.com
+@site: http://blog.csdn.net/u013948858
+@software: PyCharm
 @time: 2017/2/8  17:22
 """
 
@@ -31,7 +36,7 @@ appium_driver.find_element_by_id("com.youku.phone:id/ucenter_header_nickname").c
 appium_driver.implicitly_wait(3)
 appium_driver.find_element_by_id("com.youku.phone:id/passport_login_type").click()
 appium_driver.implicitly_wait(3)
-appium_driver.find_element_by_id("com.youku.phone:id/passport_username").send_keys("18511403089")
+appium_driver.find_element_by_id("com.youku.phone:id/passport_username").send_keys("")
 appium_driver.implicitly_wait(3)
 appium_driver.find_element_by_id("com.youku.phone:id/passport_password").send_keys(".")
 appium_driver.implicitly_wait(3)

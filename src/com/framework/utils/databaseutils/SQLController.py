@@ -2,7 +2,7 @@
 # -*- coding=utf-8 -*-
 """
 @version: python2.7
-@author: ‘dell‘
+@author: ‘jayzhen‘
 @contact: jayzhen_testing@163.com
 @site: https://github.com/gitjayzhen
 @software: PyCharm Community Edition

@@ -1,6 +1,13 @@
 #!/usr/bin/env python
-# coding=utf-8
-
+# -*-coding=utf8 -*-
+"""
+@version: v1.0
+@author: jayzhen
+@license: Apache Licence
+@contact: jayzhen_testing@163.com
+@site: http://blog.csdn.net/u013948858
+@software: PyCharm
+"""
 import os
 import platform
 import re
