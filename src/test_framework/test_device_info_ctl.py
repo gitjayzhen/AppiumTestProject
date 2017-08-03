@@ -12,7 +12,7 @@
 @time: 2017/3/26  18:27
 """
 import unittest
-from com.framework.base.deviceinfoctl import DeviceController
+from com.framework.base.DeviceInfoCtrl import DeviceController
 
 class TestDeviceinfo(unittest.TestCase):
     def setUp(self):

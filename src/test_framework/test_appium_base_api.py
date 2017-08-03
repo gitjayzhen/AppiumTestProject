@@ -1,6 +1,6 @@
 import unittest
-from com.framework.core.appiumdriver.appiumbaseapi import AppiumDriver
-from com.framework.core.initdriver.initappiumdriver import InitDriverOption
+from com.framework.core.appiumdriver.AppiumBaseApi import AppiumDriver
+from com.framework.core.initdriver.InitAppiumDriver import InitDriverOption
 from appium.webdriver.common.mobileby import By
 
 
@@ -12,7 +12,7 @@ class TestAppiumBaseApi(unittest.TestCase):
     def tearDown(self):
         self.drvier.quit()
 
-    @unittest.skip("skip 'test_is_displayed' func")
+    # @unittest.skip("skip 'test_is_displayed' func")
     def test_is_displayed(self):
         print self.appiumapi.is_displayed(By.ID, "com.youku.phone:id/img_user")
 

@@ -1,5 +1,6 @@
 [Appium] Welcome to Appium v1.6.3
 [Appium] Non-default server args:
+[Appium]   address: '127.0.0.1'
 [Appium]   port: 4490
 [Appium]   bootstrapPort: 2233
 [Appium]   udid: '90d1894b7d62'
@@ -7,4 +8,391 @@
 [Appium]   -U,--udid => --default-capabilities '{"udid":"90d1894b7d62"}'
 [Appium] Default capabilities, which will be added to each request unless overridden by desired capabilities:
 [Appium]   udid: '90d1894b7d62'
-[Appium] Appium REST http interface listener started on 0.0.0.0:4490
+[Appium] Appium REST http interface listener started on 127.0.0.1:4490
+[HTTP] --> POST /wd/hub/session {"requiredCapabilities":{},"desiredCapabilities":{"deviceName":"2014813","unicodeKeyboard":"False","udid":"90d1894b7d62","automationName":"Appium","noSign":"False","resetKeyboard":"False","platformVersion":"5.1.1","appPackage":"com.houbank.paydayloan","platformName":"Android","appActivity":".module.main.WelcomeActivity"}}
+[debug] [MJSONWP] Calling AppiumDriver.createSession() with args: [{"deviceName":"2014813","unicodeKeyboard":"False","udid":"90d1894b7d62","automationName":"Appium","noSign":"False","resetKeyboard":"False","platformVersion":"5.1.1","appPackage":"com.houbank.paydayloan","platformName":"Android","appActivity":".module.main.WelcomeActivity"},{},null,null,null]
+[Appium] Creating new AndroidDriver session
+[Appium] Capabilities:
+[Appium]   deviceName: '2014813'
+[Appium]   unicodeKeyboard: 'False'
+[Appium]   udid: '90d1894b7d62'
+[Appium]   automationName: 'Appium'
+[Appium]   noSign: 'False'
+[Appium]   resetKeyboard: 'False'
+[Appium]   platformVersion: '5.1.1'
+[Appium]   appPackage: 'com.houbank.paydayloan'
+[Appium]   platformName: 'Android'
+[Appium]   appActivity: '.module.main.WelcomeActivity'
+[debug] [AndroidDriver] AndroidDriver version: 1.10.38
+[BaseDriver] Capability 'unicodeKeyboard' changed from string to boolean. This may cause unexpected behavior
+[BaseDriver] Capability 'resetKeyboard' changed from string to boolean. This may cause unexpected behavior
+[BaseDriver] Capability 'noSign' changed from string to boolean. This may cause unexpected behavior
+[BaseDriver] Session created with session id: 49954ce7-9a31-4663-86ba-d0f2341dd4a7
+[debug] [AndroidDriver] Getting Java version
+[AndroidDriver] Java version is: 1.8.0_121
+[ADB] Checking whether adb is present
+[ADB] Using adb.exe from W:\Android\sdk\platform-tools\adb.exe
+[AndroidDriver] Retrieving device list
+[debug] [ADB] Trying to find a connected android device
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[AndroidDriver] Using device: 90d1894b7d62
+[ADB] Checking whether adb is present
+[ADB] Using adb.exe from W:\Android\sdk\platform-tools\adb.exe
+[debug] [ADB] Setting device id to 90d1894b7d62
+[AndroidDriver] App file was not listed, instead we're going to run com.houbank.paydayloan directly on the device
+[debug] [AndroidDriver] Checking whether package is present on the device
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","pm","list","packages","com.houbank.paydayloan"]
+[AndroidDriver] Starting Android session
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","wait-for-device"]
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","echo","ping"]
+[debug] [Logcat] Starting logcat capture
+[debug] [AndroidDriver] Pushing settings apk to device...
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","install","C:\\Users\\jayzhen\\AppData\\Roaming\\npm\\node_modules\\appium\\node_modules\\io.appium.settings\\bin\\settings_apk-debug.apk"]
+[debug] [AndroidDriver] Pushing unlock helper app to device...
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","install","C:\\Users\\jayzhen\\AppData\\Roaming\\npm\\node_modules\\appium\\node_modules\\appium-unlock\\bin\\unlock_apk-debug.apk"]
+[ADB] Getting device platform version
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","getprop","ro.build.version.release"]
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window"]
+[AndroidDriver] Screen already unlocked, doing nothing
+[AndroidDriver] No app sent in, not parsing package/activity
+[debug] [AndroidDriver] No app capability. Assuming it is already on the device
+[debug] [AndroidDriver] Running fast reset (stop and clear)
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","am","force-stop","com.houbank.paydayloan"]
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","pm","clear","com.houbank.paydayloan"]
+[debug] [AndroidBootstrap] Watching for bootstrap disconnect
+[debug] [ADB] Forwarding system: 2233 to device: 4724
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","forward","tcp:2233","tcp:4724"]
+[debug] [UiAutomator] Starting UiAutomator
+[debug] [UiAutomator] Moving to state 'starting'
+[debug] [UiAutomator] Parsing uiautomator jar
+[debug] [UiAutomator] Found jar name: 'AppiumBootstrap.jar'
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","push","C:\\Users\\jayzhen\\AppData\\Roaming\\npm\\node_modules\\appium\\node_modules\\appium-android-bootstrap\\bootstrap\\bin\\AppiumBootstrap.jar","/data/local/tmp/"]
+[debug] [ADB] Attempting to kill all uiautomator processes
+[debug] [ADB] Getting all processes with uiautomator
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","ps"]
+[ADB] No uiautomator process found to kill, continuing...
+[debug] [UiAutomator] Starting UIAutomator
+[debug] [ADB] Creating ADB subprocess with args: ["-P",5037,"-s","90d1894b7d62","shell","uiautomator","runtest","AppiumBootstrap.jar","-c","io.appium.android.bootstrap.Bootstrap","-e","pkg","com.houbank.paydayloan","-e","disableAndroidWatchers",false,"-e","acceptSslCerts",false]
+[debug] [UiAutomator] Moving to state 'online'
+[AndroidBootstrap] [BOOTSTRAP LOG] [debug] Registered crash watchers.
+[AndroidBootstrap] Android bootstrap socket is now connected
+[debug] [ADB] Getting connected devices...
+[AndroidBootstrap] [BOOTSTRAP LOG] [debug] Client connected
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","getprop","ro.build.version.sdk"]
+[debug] [ADB] Device API level: 22
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","am","start","-W","-n","com.houbank.paydayloan/.module.main.WelcomeActivity","-S","-a","android.intent.action.MAIN","-c","android.intent.category.LAUNCHER","-f","0x10200000"]
+[Appium] New AndroidDriver session created successfully, session 49954ce7-9a31-4663-86ba-d0f2341dd4a7 added to master session list
+[debug] [MJSONWP] Responding to client with driver.createSession() result: {"platform":"LINUX","webStorageEnabled":false,"takesScreenshot":true,"javascriptEnabled":true,"databaseEnabled":false,"networkConnectionEnabled":true,"locationContextEnabled":false,"warnings":{},"desired":{"deviceName":"2014813","unicodeKeyboard":false,"udid":"90d1894b7d62","automationName":"Appium","noSign":false,"resetKeyboard":false,"platformVersion":"5.1.1","appPackage":"com.houbank.paydayloan","platformName":"Android","appActivity":".module.main.WelcomeActivity"},"deviceName":"90d1894b7d62","unicodeKeyboard":false,"udid":"90d1894b7d62","automationName":"Appium","noSign":false,"resetKeyboard":false,"platformVersion":"5.1.1","appPackage":"com.houbank.paydayloan","platformName":"Android","appActivity":".module.main.WelcomeActivity","deviceUDID":"90d1894b7d62"}
+[HTTP] <-- POST /wd/hub/session 200 7523 ms - 844 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.WelcomeActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 139 ms - 102 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.WelcomeActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 121 ms - 102 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 138 ms - 99 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 134 ms - 99 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 146 ms - 99 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 181 ms - 99 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 141 ms - 99 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 178 ms - 99 
+[HTTP] --> GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/device/current_activity 200 147 ms - 99 
+[HTTP] --> POST /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/app/close {"sessionId":"49954ce7-9a31-4663-86ba-d0f2341dd4a7"}
+[debug] [MJSONWP] Calling AppiumDriver.closeApp() with args: ["49954ce7-9a31-4663-86ba-d0f2341dd4a7"]
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","am","force-stop","com.houbank.paydayloan"]
+[debug] [MJSONWP] Responding to client with driver.closeApp() result: null
+[HTTP] <-- POST /wd/hub/session/49954ce7-9a31-4663-86ba-d0f2341dd4a7/appium/app/close 200 723 ms - 76 
+[BaseDriver] Shutting down because we waited 60 seconds for a command
+[debug] [AndroidDriver] Shutting down Android driver
+[Appium] Closing session, cause was 'New Command Timeout of 60 seconds expired. Try customizing the timeout using the 'newCommandTimeout' desired capability'
+[Appium] Removing session 49954ce7-9a31-4663-86ba-d0f2341dd4a7 from our master session list
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","am","force-stop","com.houbank.paydayloan"]
+[debug] [ADB] Pressing the HOME button
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","input","keyevent",3]
+[debug] [AndroidBootstrap] Sending command to android: {"cmd":"shutdown"}
+[AndroidBootstrap] [BOOTSTRAP LOG] [debug] Got data from client: {"cmd":"shutdown"}
+[AndroidBootstrap] [BOOTSTRAP LOG] [debug] Got command of type SHUTDOWN
+[AndroidBootstrap] [BOOTSTRAP LOG] [debug] Returning result: {"status":0,"value":"OK, shutting down"}
+[debug] [AndroidBootstrap] Received command result from bootstrap
+[debug] [UiAutomator] Shutting down UiAutomator
+[debug] [UiAutomator] Moving to state 'stopping'
+[AndroidBootstrap] [BOOTSTRAP LOG] [debug] Closed client connection
+[debug] [AndroidBootstrap] [UIAUTO STDOUT] INSTRUMENTATION_STATUS: numtests=1
+[debug] [AndroidBootstrap] [UIAUTO STDOUT] INSTRUMENTATION_STATUS: stream=.
+[debug] [AndroidBootstrap] [UIAUTO STDOUT] INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+[debug] [AndroidBootstrap] [UIAUTO STDOUT] INSTRUMENTATION_STATUS: test=testRunServer
+[debug] [AndroidBootstrap] [UIAUTO STDOUT] INSTRUMENTATION_STATUS: class=io.appium.android.bootstrap.Bootstrap
+[debug] [AndroidBootstrap] [UIAUTO STDOUT] INSTRUMENTATION_STATUS: current=1
+[debug] [AndroidBootstrap] [UIAUTO STDOUT] INSTRUMENTATION_STATUS_CODE: 0
+[debug] [AndroidBootstrap] [UIAUTO STDOUT] INSTRUMENTATION_STATUS: stream=
+[debug] [UiAutomator] UiAutomator shut down normally
+[debug] [UiAutomator] Moving to state 'stopped'
+[debug] [ADB] Attempting to kill all uiautomator processes
+[debug] [ADB] Getting all processes with uiautomator
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","ps"]
+[ADB] No uiautomator process found to kill, continuing...
+[debug] [UiAutomator] Moving to state 'stopped'
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","am","force-stop","io.appium.unlock"]
+[debug] [Logcat] Stopping logcat capture
+[debug] [AndroidDriver] Not cleaning generated files. Add `clearSystemFiles` capability if wanted.
+[HTTP] --> POST /wd/hub/session {"requiredCapabilities":{},"desiredCapabilities":{"deviceName":"2014813","unicodeKeyboard":"False","udid":"90d1894b7d62","automationName":"Appium","noSign":"False","resetKeyboard":"False","platformVersion":"5.1.1","appPackage":"com.houbank.paydayloan","platformName":"Android","appActivity":".module.main.WelcomeActivity"}}
+[debug] [MJSONWP] Calling AppiumDriver.createSession() with args: [{"deviceName":"2014813","unicodeKeyboard":"False","udid":"90d1894b7d62","automationName":"Appium","noSign":"False","resetKeyboard":"False","platformVersion":"5.1.1","appPackage":"com.houbank.paydayloan","platformName":"Android","appActivity":".module.main.WelcomeActivity"},{},null,null,null,null,null]
+[Appium] Creating new AndroidDriver session
+[Appium] Capabilities:
+[Appium]   deviceName: '2014813'
+[Appium]   unicodeKeyboard: 'False'
+[Appium]   udid: '90d1894b7d62'
+[Appium]   automationName: 'Appium'
+[Appium]   noSign: 'False'
+[Appium]   resetKeyboard: 'False'
+[Appium]   platformVersion: '5.1.1'
+[Appium]   appPackage: 'com.houbank.paydayloan'
+[Appium]   platformName: 'Android'
+[Appium]   appActivity: '.module.main.WelcomeActivity'
+[debug] [AndroidDriver] AndroidDriver version: 1.10.38
+[BaseDriver] Capability 'unicodeKeyboard' changed from string to boolean. This may cause unexpected behavior
+[BaseDriver] Capability 'resetKeyboard' changed from string to boolean. This may cause unexpected behavior
+[BaseDriver] Capability 'noSign' changed from string to boolean. This may cause unexpected behavior
+[BaseDriver] Session created with session id: 34b7a88c-2bfd-4556-b1d2-cda785c7b6fa
+[debug] [AndroidDriver] Getting Java version
+[AndroidDriver] Java version is: 1.8.0_121
+[ADB] Checking whether adb is present
+[ADB] Using adb.exe from W:\Android\sdk\platform-tools\adb.exe
+[AndroidDriver] Retrieving device list
+[debug] [ADB] Trying to find a connected android device
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[AndroidDriver] Using device: 90d1894b7d62
+[ADB] Checking whether adb is present
+[ADB] Using adb.exe from W:\Android\sdk\platform-tools\adb.exe
+[debug] [ADB] Setting device id to 90d1894b7d62
+[AndroidDriver] App file was not listed, instead we're going to run com.houbank.paydayloan directly on the device
+[debug] [AndroidDriver] Checking whether package is present on the device
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","pm","list","packages","com.houbank.paydayloan"]
+[AndroidDriver] Starting Android session
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","wait-for-device"]
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","echo","ping"]
+[debug] [Logcat] Starting logcat capture
+[debug] [AndroidDriver] Pushing settings apk to device...
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","install","C:\\Users\\jayzhen\\AppData\\Roaming\\npm\\node_modules\\appium\\node_modules\\io.appium.settings\\bin\\settings_apk-debug.apk"]
+[debug] [AndroidDriver] Pushing unlock helper app to device...
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","install","C:\\Users\\jayzhen\\AppData\\Roaming\\npm\\node_modules\\appium\\node_modules\\appium-unlock\\bin\\unlock_apk-debug.apk"]
+[ADB] Getting device platform version
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","getprop","ro.build.version.release"]
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window"]
+[AndroidDriver] Screen already unlocked, doing nothing
+[AndroidDriver] No app sent in, not parsing package/activity
+[debug] [AndroidDriver] No app capability. Assuming it is already on the device
+[debug] [AndroidDriver] Running fast reset (stop and clear)
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","am","force-stop","com.houbank.paydayloan"]
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","pm","clear","com.houbank.paydayloan"]
+[debug] [AndroidBootstrap] Watching for bootstrap disconnect
+[debug] [ADB] Forwarding system: 2233 to device: 4724
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","forward","tcp:2233","tcp:4724"]
+[debug] [UiAutomator] Starting UiAutomator
+[debug] [UiAutomator] Moving to state 'starting'
+[debug] [UiAutomator] Parsing uiautomator jar
+[debug] [UiAutomator] Found jar name: 'AppiumBootstrap.jar'
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","push","C:\\Users\\jayzhen\\AppData\\Roaming\\npm\\node_modules\\appium\\node_modules\\appium-android-bootstrap\\bootstrap\\bin\\AppiumBootstrap.jar","/data/local/tmp/"]
+[debug] [ADB] Attempting to kill all uiautomator processes
+[debug] [ADB] Getting all processes with uiautomator
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","ps"]
+[ADB] No uiautomator process found to kill, continuing...
+[debug] [UiAutomator] Starting UIAutomator
+[debug] [ADB] Creating ADB subprocess with args: ["-P",5037,"-s","90d1894b7d62","shell","uiautomator","runtest","AppiumBootstrap.jar","-c","io.appium.android.bootstrap.Bootstrap","-e","pkg","com.houbank.paydayloan","-e","disableAndroidWatchers",false,"-e","acceptSslCerts",false]
+[debug] [UiAutomator] Moving to state 'online'
+[AndroidBootstrap] Android bootstrap socket is now connected
+[debug] [ADB] Getting connected devices...
+[AndroidBootstrap] [BOOTSTRAP LOG] [debug] Registered crash watchers.
+[AndroidBootstrap] [BOOTSTRAP LOG] [debug] Client connected
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","getprop","ro.build.version.sdk"]
+[debug] [ADB] Device API level: 22
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","am","start","-W","-n","com.houbank.paydayloan/.module.main.WelcomeActivity","-S","-a","android.intent.action.MAIN","-c","android.intent.category.LAUNCHER","-f","0x10200000"]
+[Appium] New AndroidDriver session created successfully, session 34b7a88c-2bfd-4556-b1d2-cda785c7b6fa added to master session list
+[debug] [MJSONWP] Responding to client with driver.createSession() result: {"platform":"LINUX","webStorageEnabled":false,"takesScreenshot":true,"javascriptEnabled":true,"databaseEnabled":false,"networkConnectionEnabled":true,"locationContextEnabled":false,"warnings":{},"desired":{"deviceName":"2014813","unicodeKeyboard":false,"udid":"90d1894b7d62","automationName":"Appium","noSign":false,"resetKeyboard":false,"platformVersion":"5.1.1","appPackage":"com.houbank.paydayloan","platformName":"Android","appActivity":".module.main.WelcomeActivity"},"deviceName":"90d1894b7d62","unicodeKeyboard":false,"udid":"90d1894b7d62","automationName":"Appium","noSign":false,"resetKeyboard":false,"platformVersion":"5.1.1","appPackage":"com.houbank.paydayloan","platformName":"Android","appActivity":".module.main.WelcomeActivity","deviceUDID":"90d1894b7d62"}
+[HTTP] <-- POST /wd/hub/session 200 7715 ms - 844 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.WelcomeActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 131 ms - 102 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.WelcomeActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 136 ms - 102 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 144 ms - 99 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 182 ms - 99 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 131 ms - 99 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 145 ms - 99 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 157 ms - 99 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 157 ms - 99 
+[HTTP] --> GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity {}
+[debug] [MJSONWP] Calling AppiumDriver.getCurrentActivity() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting focused package and activity
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","dumpsys","window","windows"]
+[debug] [MJSONWP] Responding to client with driver.getCurrentActivity() result: ".module.main.MainActivity"
+[HTTP] <-- GET /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/device/current_activity 200 173 ms - 99 
+[HTTP] --> POST /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/app/close {"sessionId":"34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"}
+[debug] [MJSONWP] Calling AppiumDriver.closeApp() with args: ["34b7a88c-2bfd-4556-b1d2-cda785c7b6fa"]
+[debug] [ADB] Getting connected devices...
+[debug] [ADB] 1 device(s) connected
+[debug] [ADB] Running 'W:\Android\sdk\platform-tools\adb.exe' with args: ["-P",5037,"-s","90d1894b7d62","shell","am","force-stop","com.houbank.paydayloan"]
+[debug] [MJSONWP] Responding to client with driver.closeApp() result: null
+[HTTP] <-- POST /wd/hub/session/34b7a88c-2bfd-4556-b1d2-cda785c7b6fa/appium/app/close 200 724 ms - 76 
+
+T:\OneDrive\icloud\Project\AppiumTestProject\src\com\framework\core\initdriver>

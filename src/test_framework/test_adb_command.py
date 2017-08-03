@@ -1,5 +1,5 @@
 import unittest
-from com.framework.core.adb.commond import AdbCmder
+from com.framework.core.adb.AdbCommand import AdbCmder
 
 
 class TestAdbCommand(unittest.TestCase):

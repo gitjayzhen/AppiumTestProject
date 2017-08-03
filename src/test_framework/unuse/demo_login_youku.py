@@ -33,7 +33,7 @@ appium_driver.find_element_by_id("com.youku.phone:id/passport_login_type").click
 appium_driver.implicitly_wait(3)
 appium_driver.find_element_by_id("com.youku.phone:id/passport_username").send_keys("18511403089")
 appium_driver.implicitly_wait(3)
-appium_driver.find_element_by_id("com.youku.phone:id/passport_password").send_keys("youku1412.")
+appium_driver.find_element_by_id("com.youku.phone:id/passport_password").send_keys(".")
 appium_driver.implicitly_wait(3)
 appium_driver.find_element_by_id("com.youku.phone:id/passport_login").click()
 '''

@@ -6,7 +6,7 @@ import os
 import re
 import xml.etree.cElementTree as ET
 
-from com.framework.core.adb.commond import AdbCmder
+from com.framework.core.adb.AdbCommand import AdbCmder
 
 PATH = lambda p: os.path.abspath(p)
 
