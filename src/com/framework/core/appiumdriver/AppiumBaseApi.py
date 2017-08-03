@@ -8,15 +8,15 @@
 @contact: 2431236868@qq.com
 @site: http://www.jayzhen.com
 @software: PyCharm
-@file: appiumbaseapi.py
+@file: AppiumBaseApi.py
 @time: 2017/3/28  23:32
 """
 from appium.webdriver.common.touch_action import TouchAction
-from com.framework.core.adb.commond import AdbCmder
+from com.framework.core.adb.AdbCommand import AdbCmder
 from appium.webdriver.common.mobileby import MobileBy as By
-from com.framework.base.getallpathctl import GetAllPathController
-from com.framework.utils.reporterutils.loggingctl import LoggingController
-from com.framework.utils.formatutils.datetimeutil import DateTimeManager
+from com.framework.base.GetAllPathCtrl import GetAllPathController
+from com.framework.utils.reporterutils.LoggingUtil import LoggingController
+from com.framework.utils.formatutils.DateTimeUtil import DateTimeManager
 import os
 import re
 import time
@@ -101,6 +101,8 @@ class AppiumDriver(object):
         is_succeed = False
         element = None
         time_begins = time.time()
+        if timeout is None or timeout == "":
+            timeout = 3
         while ((time.time() - time_begins) <= timeout):
             try:
                 element = self.driver.find_element(by, value)

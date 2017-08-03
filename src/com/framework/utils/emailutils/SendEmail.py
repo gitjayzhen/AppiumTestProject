@@ -13,9 +13,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
-from com.framework.utils.fileutils.filecheckandgetpath import FileChecKController
-from com.framework.utils.fileutils.configcommonctl import ConfigController
-from com.framework.utils.reporterutils.loggingctl import LoggingController
+from com.framework.utils.fileutils.FileCheckAndGetPath import FileChecKController
+from com.framework.utils.fileutils.ConfigCommonUtil import ConfigController
+from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 
 
 class EmailController(object):

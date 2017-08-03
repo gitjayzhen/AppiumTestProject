@@ -13,8 +13,8 @@ python实现读取Excel文件中的内容
 import xlrd
 from xlutils.copy import copy
 import os
-from com.framework.utils.reporterutils.loggingctl import LoggingController
-from com.framework.utils.fileutils.filecheckandgetpath import FileChecKController
+from com.framework.utils.reporterutils.LoggingUtil import LoggingController
+from com.framework.utils.fileutils.FileCheckAndGetPath import FileChecKController
 import datetime
 
 

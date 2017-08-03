@@ -14,7 +14,7 @@ import sys
 import ConfigParser
 
 
-class ConfigController():
+class ConfigController(object):
 
     def __init__(self, path):
         self.path = path
@@ -25,15 +25,15 @@ class ConfigController():
         result = ""
         try:
             result = self.cf.get(field, key)
-        except:
+        except Exception as e:
             result = ""
         return result
 
     def set(self, filed, key, value):
         try:
             self.cf.set(filed, key, value)
-            self.cf.write(open(self.path,'w'))
-        except:
+            self.cf.write(open(self.path, 'w'))
+        except Exception as e:
             return False
         return True
 
@@ -53,6 +53,7 @@ class ConfigController():
         cf = ConfigParser.ConfigParser()
         try:
             cf.read(config_file_path)
+            cf.add_section(field)
             cf.set(field, key, value)
             cf.write(open(config_file_path,'w'))
         except:

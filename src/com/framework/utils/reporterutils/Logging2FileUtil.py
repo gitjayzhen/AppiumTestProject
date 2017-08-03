@@ -13,6 +13,7 @@ import time
 
 PATH = lambda p: os.path.abspath(p)
 
+
 class LogController(object):
 
     def __init__(self, logPath, fileName):
@@ -22,7 +23,7 @@ class LogController(object):
         if not os.path.isdir(self.path):
             os.makedirs(self.path)
 
-        self.logFile = file(PATH("%s/%s" %(self.pathself.fileName)), "a")
+        self.logFile = file(PATH("%s/%s" % (self.path, self.fileName)), "a")
 
     def info(self, info):
 

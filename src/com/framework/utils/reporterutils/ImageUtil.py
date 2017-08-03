@@ -15,7 +15,7 @@ import tempfile
 import os
 import shutil
 from PIL import Image
-from com.framework.core.adb.commond import AdbCmder
+from com.framework.core.adb.AdbCommand import AdbCmder
 
 PATH = lambda p: os.path.abspath(p)
 

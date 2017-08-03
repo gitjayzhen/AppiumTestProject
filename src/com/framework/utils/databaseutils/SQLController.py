@@ -11,9 +11,9 @@
 """
 
 import mysqldb
-from com.framework.utils.fileutils.configcommonctl import ConfigController
-from com.framework.utils.fileutils.filecheckandgetpath import FileChecKController
-from com.framework.utils.reporterutils.loggingctl import LoggingController
+from com.framework.utils.fileutils.ConfigCommonUtil import ConfigController
+from com.framework.utils.fileutils.FileCheckAndGetPath import FileChecKController
+from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 
 
 class MySQLController(object):

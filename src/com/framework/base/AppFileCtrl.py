@@ -22,8 +22,8 @@ class ApkController():
         if apklist is None:
             return None
         st = apklist.sort(key=lambda fn: os.path.getmtime(self.result_dir+"\\"+fn) if not os.path.isdir(self.result_dir+"\\"+fn) else 0)
-        #d=datetime.datetime.fromtimestamp(os.path.getmtime(result_dir+"\\"+apklist[-1]))
-        #print d
+        # d=datetime.datetime.fromtimestamp(os.path.getmtime(result_dir+"\\"+apklist[-1]))
+        # print d
         fname = apklist[-1]
         fpath = os.path.join(self.result_dir,fname)
         return fpath,fname

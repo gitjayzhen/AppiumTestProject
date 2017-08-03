@@ -16,7 +16,7 @@
 import datetime
 import os
 import time
-from com.framework.utils.reporterutils.loggingctl import LoggingController
+from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 
 class FileChecKController():
 

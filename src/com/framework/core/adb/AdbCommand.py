@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 import string
-import eventkeys
+import EventKeys
 import json
 
 reload(sys)
@@ -16,23 +16,24 @@ sys.setdefaultencoding('utf8')
 
 
 class AdbCmder(object):
-    '''
-        利用可变参数来初始化*（tuple），**（dict）:约定参数中的key只能是sno
-    '''
+    """
+    利用可变参数来初始化*（tuple），**（dict）:约定参数中的key只能是sno
+	a(1,2,3,4,4,Z=8,k=2) ： *接受k=v之前的内容，**接受k=v
+    """
+
     def __init__(self, **serialno_num):
         self.system = None
         self.find_type = None
         self.command = "adb"
-        if serialno_num.has_key("sno"):
+        self.__serialno_num = ""
+        if "sno" in serialno_num:
             self.__serialno_num = serialno_num.get("sno")
-        else:
-            self.__serialno_num = ""
 
     def get_serialno_num(self):
         return self.__serialno_num
 
-    def set_serialno_num(self,arg):
-        self.__serialno_num = arg
+    def set_serialno_num(self, sno):
+        self.__serialno_num = sno
 
     def judgment_system_type(self):
         # 判断系统类型，windows使用findstr，linux使用grep
@@ -84,9 +85,9 @@ class AdbCmder(object):
     def get_device_list(self):
         devices = []
         result = subprocess.Popen("adb devices", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
-        result.reverse()  #将readlines结果反向排序
+        result.reverse()  # 将readlines结果反向排序
         for line in result[1:]:
-            if "attached" not in line.strip():
+            if "attached" not in line.strip() and "daemon" not in line.strip():
                 devices.append(line.split()[0])
             else:
                 break
@@ -224,7 +225,6 @@ class AdbCmder(object):
         matApp = []
         for packages in self.shell("pm list packages %s" % keyword).stdout.readlines():
             matApp.append(packages.split(":")[-1].splitlines()[0])
-
         return matApp
 
     def get_app_start_total_time(self, component):
@@ -236,32 +236,41 @@ class AdbCmder(object):
             .stdout.read().split(": ")[-1]
         return int(time)
 
-    def do_install_app(self, appFile):
+    def do_install_app(self, appFile, pkg_name):
         """
         安装app，app名字不能含中文字符
-        args:
-        - appFile -: app路径
+        args:- appFile -: app路径
         usage: install("d:\\apps\\Weico.apk")
         """
         self.adb("install %s" % appFile)
+        if not self.is_install_app(pkg_name):
+            return True
+        else:
+            return False
+
+    def do_uninstall_app(self, pkg_name):
+        """
+            卸载应用args:- packageName -:应用包名，非apk名
+        """
+        self.adb(" uninstall %s" % pkg_name)
+        if not self.is_install_app(pkg_name):
+            return True
+        else:
+            return False
 
     def is_install_app(self, packageName):
         """
         判断应用是否安装，已安装返回True，否则返回False
         usage: isInstall("com.example.apidemo")
         """
-        if self.getMatchingAppList(packageName):
-            return True
-        else:
-            return False
-
-    def do_remove_app(self, packageName):
-        """
-        卸载应用
-        args:
-        - packageName -:应用包名，非apk名
-        """
-        self.adb("uninstall %s" % packageName)
+        flag = False
+        result = self.get_third_app_list()
+        if result is None or len(result) < 0:
+            return None
+        for i in result:
+            if re.search(packageName, i.strip()):
+                flag = True
+        return flag
 
     def do_clear_app_data(self, packageName):
         """
@@ -459,7 +468,7 @@ class AdbCmder(object):
         for i in xrange(length):
             self.shell("input text %s" % out[i])
             if i != length - 1:
-                self.sendKeyEvent(eventkeys.SPACE)
+                self.sendKeyEvent(EventKeys.SPACE)
         time.sleep(0.5)
 
     def do_reboot(self):
@@ -498,11 +507,11 @@ class AdbCmder(object):
         pid1 = os.popen("netstat -ano | findstr 5037 | findstr  LISTENING").read()
         if pid1 is not None:
             pid = pid1.split()[-1]
-        #下面的命令执行结果，可能因电脑而异，若获取adb.exe时出错，可自行调试！
-        #E:\>tasklist /FI "PID eq 10200"
-        #Image Name                     PID Session Name        Session#    Mem Usage
-        #========================= ======== ================ =========== ============
-        #adb.exe                      10200 Console                    1      6,152 K
+        # 下面的命令执行结果，可能因电脑而异，若获取adb.exe时出错，可自行调试！
+        # E:\>tasklist /FI "PID eq 10200"
+        # Image Name                     PID Session Name        Session#    Mem Usage
+        # ========================= ======== ================ =========== ============
+        # adb.exe                      10200 Console                    1      6,152 K
 
         process_name = os.popen('tasklist /FI "PID eq %s"' %pid).read().split()[-6]
         process_path = os.popen('wmic process where name="%s" get executablepath' %process_name).read().split("\r\n")[1]
@@ -513,7 +522,7 @@ class AdbCmder(object):
         # directory = "\\".join(name_list)
         # #打开进程所在文件夹
         # os.system("explorer.exe %s" %directory)
-        #杀死该进程
+        # 杀死该进程
         os.system("taskkill /F /PID %s" %pid)
         os.system("adb start-server")
 

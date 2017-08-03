@@ -9,10 +9,10 @@
 @time: 2017/3/29  13:12
 """
 import os
-from com.framework.utils.reporterutils.loggingctl import LoggingController
-from com.framework.utils.fileutils.configcommonctl import ConfigController
-from com.framework.utils.fileutils.filecheckandgetpath import FileChecKController
-from com.framework.utils.formatutils.datetimeutil import DateTimeManager
+from com.framework.utils.reporterutils.LoggingUtil import LoggingController
+from com.framework.utils.fileutils.ConfigCommonUtil import ConfigController
+from com.framework.utils.fileutils.FileCheckAndGetPath import FileChecKController
+from com.framework.utils.formatutils.DateTimeUtil import DateTimeManager
 
 '''
 创建一个html文件，并返回文件的对象

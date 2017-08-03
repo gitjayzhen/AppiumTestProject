@@ -6,12 +6,12 @@
 @contact: jayzhen_testing@163.com
 @site: https://github.com/gitjayzhen
 @software: PyCharm Community Edition
-@file: getallpathctl.py
+@file: GetAllPathCtrl.py
 @time: 2017/3/29  13:12
 """
-from com.framework.utils.fileutils.configcommonctl import ConfigController
-from com.framework.utils.fileutils.filecheckandgetpath import FileChecKController
-from com.framework.utils.reporterutils.loggingctl import LoggingController
+from com.framework.utils.fileutils.ConfigCommonUtil import ConfigController
+from com.framework.utils.fileutils.FileCheckAndGetPath import FileChecKController
+from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 import os
 
 PATH = lambda a: os.path.abspath(a)
@@ -28,7 +28,7 @@ class GetAllPathController(object):
 
     def get_dumpxml_path(self):
         self.log4py.info("executive -get_dumpxml_path- function ")
-        path = os.path.join(self.pro_path,self.cfgctl.get("dumpxmlPath", "dumpxmlPath"))
+        path = os.path.join(self.pro_path, self.cfgctl.get("dumpxmlPath", "dumpxmlPath"))
         if PATH(path):
             self.log4py.info("获取 %s"%path)
             return path
@@ -67,12 +67,6 @@ class GetAllPathController(object):
             if not os.path.exists(path):
                 os.makedirs(path)
             self.log4py.info("获取 %s" % path)
-            return path
-        return None
 
-# if __name__ == "__main__":
-#     gp = GetAllPathController()
-#     print gp.get_dumpxml_path()
-#     print gp.get_capture_path()
-#     print gp.get_htmlreport_path()
-#     print gp.get_logs_path()
+            return path.replace("\\", "/")
+        return None

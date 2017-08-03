@@ -3,8 +3,8 @@ import os
 import re
 import datetime
 import time
-from deviceinfoctl import DeviceController
-from com.framework.core.adb.commond import AdbCmder
+from DeviceInfoCtrl import DeviceController
+from com.framework.core.adb.AdbCommand import AdbCmder
 '''
 主要处理安装和卸载手机上的应用
 '''

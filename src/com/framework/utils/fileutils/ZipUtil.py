@@ -9,13 +9,13 @@
 @time: 2017/3/29  13:12
 """
 import os
-import zipfile
+import ZipUtil
 
 #解压zip文件 
 def unzip(): 
     source_zip = "c:\\update\\SW_Servers_20120815.zip"
     target_dir = "c:\\update\\"
-    myzip = zipfile(source_zip)
+    myzip = ZipUtil(source_zip)
     myfilelist=myzip.namelist() 
     for name in myfilelist: 
         f_handle=open(target_dir+name,"wb") 
@@ -28,7 +28,7 @@ def addzip(currentfolder,ready2compression):
     zipfname = "AutoTesting-Reports.zip"
     absZIPpath = os.path.join(currentfolder,zipfname) 
     absfpath = os.path.join(currentfolder,ready2compression)
-    f = zipfile.ZipFile(absZIPpath , 'w', zipfile.ZIP_DEFLATED)
+    f = ZipUtil.ZipFile(absZIPpath, 'w', ZipUtil.ZIP_DEFLATED)
     f.write(absfpath) 
     f.close() 
     
@@ -36,7 +36,7 @@ def addzip(currentfolder,ready2compression):
  
 #把整个文件夹内的文件打包 
 def adddirfile(): 
-    f = zipfile.ZipFile('archive.zip', 'w', zipfile.ZIP_DEFLATED)
+    f = ZipUtil.ZipFile('archive.zip', 'w', ZipUtil.ZIP_DEFLATED)
     startdir = "c:\\mydirectory" 
     for dirpath, dirnames, filenames in os.walk(startdir): 
         for filename in filenames: 
