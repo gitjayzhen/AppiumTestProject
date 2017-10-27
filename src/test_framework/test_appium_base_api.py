@@ -9,9 +9,11 @@
 @software: PyCharm
 """
 import unittest
-from com.framework.core.appiumdriver.AppiumBaseApi import AppiumDriver
-from com.framework.core.initdriver.InitAppiumDriver import InitDriverOption
+
 from appium.webdriver.common.mobileby import By
+
+from com.framework.core.appiumdriver.AppiumBaseApi import AppiumDriver
+from com.framework.initdriver import InitDriverOption
 
 
 class TestAppiumBaseApi(unittest.TestCase):

@@ -14,6 +14,7 @@ import time
 from com.framework.core.adb.AdbCommand import AdbCmder
 from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 
+
 class DeviceController():
     def __init__(self):
         self.android = AdbCmder()

@@ -59,25 +59,26 @@ pathconfig.ini中的配置所需项的相对路径，通过getallpath调用confi
     ......
 
     客户端多个连接：
-    >在脚本的capabilities.setCapability("udid","udid_num")
+    >在脚本的capabilities.setCapability("udid","udid_num")   
     driver.remote("http://127.0.0.1:4492/wd/hub",cpabilities")
     udid和对应启动的服务器的端口保持一致<br>
     端口生成、doc命令执行、获取设备列表、启动多服务器
     
 2. 现在做的逻辑就是：获取当前连接的设备数，启动相同数量的服务器并分配好未被占用的端口，同时要确认每个设备连接的是独立的服务端口
 那么脚本必须做到多线程执行，不然会报错
+3. 编写实际的自动化脚本时，记得先实力化server服务，然后进行多线程的设计（待完成）
 
 
 ## 20170728  20170730 (计划)
 获取app的启动和首页的activity，可以通过查看apk包和已安装的app<br>
-** aapt dump badging a.apk **
-** adb logcat -c && adb logcat -s ActivityManager **<br><br>
+** aapt dump badging a.apk **    
+** adb logcat -c && adb logcat -s ActivityManager **<br>
 1. 启动参数配置化（run.ini）,在配置文件中读取驱动app启动的desired capabilities参数、还有关于是否重新安装的开关值
-apk的安装包路径、app的启动activity、app的首页activity<br><br>
+apk的安装包路径、app的启动activity、app的首页activity<br>
 2. 是否重新安装的开关值，为0时，检查是否安装，若安装了先卸载，再安装；为1时，检查是否安装，没有安装就先安装再执行后续操作
-，若安装了，就直接继续后续操作<br><br>
-3. 根据udid来过去设备对应的port（当然多设备的时候，需要将配置文件中的内容设置为list，逗号隔开）<br><br>
-4. 在脚本获取appium driver时，在线程中实例化一个线程，并返回这个driver<br><br>
+，若安装了，就直接继续后续操作<br>
+3. 根据udid来过去设备对应的port（当然多设备的时候，需要将配置文件中的内容设置为list，逗号隔开）<br>
+4. 在脚本获取appium driver时，在线程中实例化一个线程，并返回这个driver<br>
 
 
 ## 20170801
@@ -87,8 +88,30 @@ apk的安装包路径、app的启动activity、app的首页activity<br><br>
 4. 修改initappiumdriver中的数据获取方式；
 
 ## 20170802
-1. APPIUM DRIVER已经设计完成，需要后续再多线程实例化和初始化上做一个详细的流程
+1. APPIUM DRIVER已经设计完成，需要后续再多线程实例化和初始化上做一个详细的流程。
+2. 初次启动服务并实例化driver，会出现urllib2.URLError，因为服务启动占用了端口，但是正式的服务内容还没有启动完成，在此时去Remote(url)就报错了，
+放弃之前使用的超时、校验端口的方式，使用异常处理的方式来建立driver。
+3. 同时解除InitDriverOption与ServicePort的耦合。
+4. 改造InitService.generate_service_command中的数据形式，使用dict代替list。
 
+## 20170804
+1. 做了个实验，python自己的日志模块做的很好，就像自己做一下封装，当前的日志模块可以有两种实现方式：
+    >1.将所有日志等级的handler在类的__init__方法中实例化     
+     2.在类的之前以普通方式实例handler      
+     3.使用配置文件的方式设置logging，其中一个是fileconfig，一个是dictconfig
+2. 第一种方法会出现同一个日志level的logger，会有个handler，也就是会重复打印n个日志内容。而第二中方法不会出现这种情况，如果想使用第一种方法，也可以，就是在
+打印日志后，将当前的handler关闭并移除当前的logger.handlers[i]
+3. fileconfig和dictconfig比较方便的使用，但是日志的格式无法自定义，但是可以自己进行封装。
+4. 现在项目中已经demo好了四种日志模板，可以用到任意项目中。
+
+
+## 20171023
+1. 通过ServicePort进行初始化的服务并生成的ini配置文件中添加一个run字段，如果为0：未执行；为1：执行过
+2. InitDriverOption中初始化appiumdriver时，首先读取第一步生成的配置文件如果有
+
+
+## 
 ## 20170710  待完成
 1. demo一个短信生成器
-2. demo一个联系人生成器（联系人的存储形式要不同）
+2. demo一个联系人生成器（联系人的存储形式要不同）  
+3. 测试一下notepad++的md功能

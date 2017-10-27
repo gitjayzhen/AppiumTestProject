@@ -34,8 +34,8 @@ class FileChecKController():
     '''
     指定目录下是否存在指定的文件
     '''
-    def is_path_has_file(self,path,filename):
-        boolean = self.check_has_file(path,filename)
+    def is_path_has_file(self, path, filename):
+        boolean = self.check_has_file(path, filename)
         return boolean
 
     '''
@@ -51,7 +51,7 @@ class FileChecKController():
                         return True
             return False
         except Exception, e:
-            self.__logger.error("check_has_file()方法出现异常",e)
+            self.__logger.error("check_has_file()方法出现异常"+ str(e))
 
     '''
     获取文件的绝对路径之倩需要check文件是否存在

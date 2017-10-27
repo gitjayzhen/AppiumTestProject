@@ -9,55 +9,43 @@
 @time: 2017/3/29  13:12
 该日志类可以把不同级别的日志输出到不同的日志文件中 
 """
+
 import os
-import sys
-import time
+import datetime
 import logging
 import inspect
 
 abspath = os.getcwd()
-logfilepath = abspath.split("src")[0] + "testresult\\logs4script\\"    # 当前项目的目录
+logfilepath = abspath.split("src")[0] + "testresult\\logs4script\\"
 if not os.path.exists(logfilepath):
     os.makedirs(logfilepath)
-handlers = {logging.NOTSET: os.path.join(logfilepath, "log-notset.log"),
-            logging.DEBUG: os.path.join(logfilepath, "log-debug.log"),
-            logging.INFO: os.path.join(logfilepath, "log-info.log"),
-            logging.WARNING: os.path.join(logfilepath, "log-warning.log"),
-            logging.ERROR: os.path.join(logfilepath, "log-error.log"),
-            logging.CRITICAL: os.path.join(logfilepath, "log-critical.log")}
+
+# 将对应文件实例化成一个FileHandler对象，让不用级别的日志共用该Filehandler，这样做到日志打印到一个文件中
+hd = logging.FileHandler(os.path.abspath(os.path.join(logfilepath, "scripts.log")))
+handlers = {logging.DEBUG: hd,logging.INFO: hd,logging.WARNING: hd, logging.ERROR: hd}
 
 
-def create_file_handlers():
-    logLevels = handlers.keys()
-    for level in logLevels:
-        path = os.path.abspath(handlers[level])
-        handlers[level] = logging.FileHandler(path)
-
-# 加载模块时创建全局变量
-create_file_handlers()
-
-
-class LoggingController():
+class LoggingController(object):
 
     def __init__(self, level=logging.NOTSET):
-        self.__loggers = {}  # 将每个级别的logger对象存放在dict中
-        logLevels = handlers.keys()
-        for level in logLevels:
-            # 实例化一个logger对象，用getLogger()将永远返回相同Logger对象的引用。
+        self.__loggers = {}
+        log_levels = handlers.keys()
+        for level in log_levels:
             logger = logging.getLogger(str(level))
-            # 如果不指定level，获得的handler似乎是同一个handler?
             logger.addHandler(handlers[level])
             logger.setLevel(level)
             self.__loggers.update({level: logger})
 
     def time_now_formate(self):
-        return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')
 
     def get_log_message(self, level, message):
-        # 在堆栈中获取当前执行文件或类或方法
         frame, filename, lineNo, functionName, code, unknowField = inspect.stack()[2]
         '''日志格式：[时间] [类型] [记录代码] 信息'''
-        return "[%s] [%s] [%s - %s - %s] %s" % (self.time_now_formate(), level, filename, lineNo, functionName, message)
+        relative_path = filename.split("AppiumTestProject")[1]
+        relative_path = relative_path.replace("/", ".")
+        relative_path = relative_path.replace("\\", ".")
+        return "[%s] [%s] [%s - %s - %s] %s" % (self.time_now_formate(), level, relative_path, lineNo, functionName, message)
 
     def info(self, message):
         message = self.get_log_message("info", message)
@@ -65,7 +53,7 @@ class LoggingController():
 
     def error(self, message):
         message = self.get_log_message("error", message)
-        self.__loggers[logging.ERROR].error(message)
+        self.__loggers[logging.ERROR].warning(message)
 
     def warning(self, message):
         message = self.get_log_message("warning", message)
@@ -78,9 +66,4 @@ class LoggingController():
     def critical(self, message):
         message = self.get_log_message("critical", message)
         self.__loggers[logging.CRITICAL].critical(message)
-
-    def log_close(self):
-        logLevels = handlers.keys()
-        for level in logLevels:
-            handlers[level].close()
 

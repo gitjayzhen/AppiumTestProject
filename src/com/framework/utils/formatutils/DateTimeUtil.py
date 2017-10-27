@@ -53,7 +53,7 @@ class DateTimeManager(object):
      * @param 无
      * @return 系统当前时间并格式化为HHmmssSSS即类似155039527格式
     '''
-    def getTime(self) :
+    def getTime(self):
         return datetime.datetime.now().strftime("%H%M%S%f")
     
     '''

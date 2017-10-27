@@ -39,12 +39,13 @@ class CreateConfigFile(object):
                 filed = device_list[i]
                 key = filed
                 value = port_list[i]
-                # 因为是覆盖写入，没有section，需要先添加再设置
+                # 因为是覆盖写入，没有section，需要先添加再设置, 初始化的服务都加一个run的标识
                 # TODO(jayzhen_testing@163.com) 首次启动adb服务的时候，会出现*字符，需要加一个容错机制
                 self.cfg.add_section(filed)
                 self.cfg.set(filed, key, value)
+                self.cfg.set(filed, "run", "0")
             self.cfg.write(open(f_path, 'wb'))
-            self.log4py.debug("设备sno与appium服务端口映射已写入appiumService.ini配置文件")
+            self.log4py.debug("设备sno与appium服务端口映射已写入appiumService.ini配置文件:{}--{}".format(key, value))
 
     def create_config_file(self, path):
         """

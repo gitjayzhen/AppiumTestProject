@@ -11,7 +11,8 @@
 import os
 import re
 
-class ApkController():
+
+class ApkController(object):
 
     '''
     初始化就先确认存放apk文件的路径,通过config目录的中apk path文件来获取配置文件中path。
