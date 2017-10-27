@@ -12,7 +12,7 @@ import unittest
 
 from appium.webdriver.common.mobileby import By
 
-from com.framework.core.appiumdriver.AppiumBaseApi import AppiumDriver
+from com.framework.core.appiumapi.AppiumBaseApi import AppiumDriver
 from com.framework.initdriver import InitDriverOption
 
 

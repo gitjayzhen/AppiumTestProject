@@ -109,6 +109,10 @@ apk的安装包路径、app的启动activity、app的首页activity<br>
 1. 通过ServicePort进行初始化的服务并生成的ini配置文件中添加一个run字段，如果为0：未执行；为1：执行过
 2. InitDriverOption中初始化appiumdriver时，首先读取第一步生成的配置文件如果有
 
+## 20171027
+1. 优化一下项目管理
+2. 测试脚本设计的一个建议，在创建线程前，先实例化appium服务，这时候通过配置文件来获取sno和port，
+随后有了唯一设备的driver，然后就去执行脚本
 
 ## 
 ## 20170710  待完成

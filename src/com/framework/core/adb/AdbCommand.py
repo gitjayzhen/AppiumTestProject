@@ -293,8 +293,8 @@ class AdbCmder(object):
         """
         重置当前应用
         """
-        packageName = self.getCurrentPackageName()
-        component = self.getFocusedPackageAndActivity()
+        packageName = self.get_current_package_name()
+        component = self.get_current_activity()
         self.do_clear_app_data(packageName)
         self.do_start_activity(component)
 
