@@ -12,11 +12,28 @@
 import subprocess
 import re
 import os
+import threading
+from multiprocessing import Process
 import string
 import time
 from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 from com.framework.base.GetAllPathCtrl import GetAllPathController
 from com.framework.utils.fileutils.CreateConfigUtil import CreateConfigFile
+
+
+class RunServer(threading.Thread):
+    def __init__(self, cmd):
+        threading.Thread.__init__(self)
+        self.cmd = cmd
+
+    def run(self):
+        # 20170802 尽可能使用subprocess代替os.system执行命令，避免一些错误
+        # os.system(i)
+        # fp = open("D:/backup/OneDrive/programs/mobile/AppiumTestProject/testresult/logs4appium/933733961f382.txt", 'a')
+        # 20171219 可以使用fp对象传给stdout
+        p = subprocess.Popen(self.cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+        p.wait()
+        time.sleep(5)
 
 
 class ServicePort(object):
@@ -42,9 +59,9 @@ class ServicePort(object):
                 ip_port = port_res[i].strip().split("   ")
                 if re.search(reg, ip_port[1]):
                     flag = True
-                    self.log4py.info(str(port_num) + " 端口已经被占用." + str(port_res))
+                    self.log4py.info(str(port_num) + " 端口已经被占用,进程是：" + str(port_res))
             if not flag:
-                self.log4py.info(str(port_num) + " 端口没有被占用." + str(port_res))
+                self.log4py.info(str(port_num) + " 端口没有被占用.")
         except Exception, e:
             self.log4py.error(str(port_num) + " port get occupied status failure: " + str(e))
         return flag
@@ -55,7 +72,6 @@ class ServicePort(object):
         :param port: 这个port来自appiumservice.ini文件
         """
         return self.is_port_used(port)
-
 
     def __generat_port_list(self, port_start, num):
         """
@@ -74,19 +90,22 @@ class ServicePort(object):
         获取链接电脑的设备数
         """
         self.device_list = []
-        result = subprocess.Popen("adb devices", shell=True, stdout=subprocess.PIPE,
-                                  stderr=subprocess.PIPE).stdout.readlines()
-        result.reverse()  # 将readlines结果反向排序
-        for line in result[1:]:
-            """
-            List of devices attached
-            * daemon not running. starting it now at tcp:5037 *
-            * daemon started successfully *
-            """
-            if "attached" not in line.strip() and "daemon" not in line.strip():
-                self.device_list.append(line.split()[0])
-            else:
-                break
+        try:
+            result = subprocess.Popen("adb devices", shell=True, stdout=subprocess.PIPE,
+                                      stderr=subprocess.PIPE).stdout.readlines()
+            result.reverse()  # 将readlines结果反向排序
+            for line in result[1:]:
+                """
+                List of devices attached
+                * daemon not running. starting it now at tcp:5037 *
+                * daemon started successfully *
+                """
+                if "attached" not in line.strip() and "daemon" not in line.strip():
+                    self.device_list.append(line.split()[0])
+                else:
+                    break
+        except Exception, e:
+            self.log4py.error("启动appium前查询连接的设备情况，发生错误：{}".format(str(e)))
         return self.device_list
 
     def __get_port_list(self, start):
@@ -103,8 +122,8 @@ class ServicePort(object):
     def __generate_service_command(self):
         """
         generat_port_list (service_port, conn_port, udid)->command
+        :return 是一个以端口号为key的dict
         """
-        self.device_list = self.__get_devices()
         self.appium_port_list = self.__get_port_list(4490)
         bootstrap_port_list = self.__get_port_list(2233)
         # 20170804 将service_cmd list类型换成dict --> {port:cmd,port1:cmd2} ,port留作执行cmd后的端口校验
@@ -118,46 +137,11 @@ class ServicePort(object):
             service_cmd[str(self.appium_port_list[i])] = cmd
         return service_cmd
 
-    def start_services(self):
-        """
-        根据appium端口、链接手机端口、手机serialno表示，创建一个服务器;启动有些延迟
-        需要将appium和手机sno放到文件中供初始化driver使用，xml、ini、conf、json文件格式都行
-        """
-        service_list = self.__generate_service_command()
-        flag = False
-        # 启动服务
-        if len(service_list) > 0:
-            for i in service_list:
-                self.log4py.info("启动服务的命令：{}".format(service_list[i]))
-                # 20170802 尽可能使用subprocess代替os.system执行命令，避免一些错误
-                # os.system(i)
-                sp = subprocess.Popen(i, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                sp.wait()
-
-            #检查服务是否已经启动
-            for i in range(len(self.appium_port_list)):
-                p = self.appium_port_list[i]
-                if self.is_live_service(p):
-                    self.log4py.info("appium server 端口为{}的服务已经启动".format(p))
-                    flag = True
-                else:
-                    self.log4py.info("appium server 端口为{}的服务未启动".format(p))
-                    flag = False
-            #服务启动正常，就写入配置文件
-            if flag:
-                self.cfg.set_appium_uuid_port(self.device_list, self.appium_port_list)
-        else:
-            flag = False
-        # 20170804 等待5秒钟，让服务自己启动一下
-        time.sleep(5)
-        return flag
-
     def kill_service_on_pid(self, pid):
         if pid is not None:
             pid = pid.split()[-1]
             os.system("taskkill /F /PID %s" % pid)
             self.log4py.info("PID：%s 关闭端口服务成功" % pid)
-
 
     def stop_all_appium_server(self):
         """
@@ -174,4 +158,39 @@ class ServicePort(object):
                 if pid:
                     self.kill_service_on_pid(pid)
 
+    def check_service(self, times=5):
+        # 检查服务是否已经启动
+        begin = time.time()
+        for i in range(len(self.appium_port_list)):
+            p = self.appium_port_list[i]
+            while time.time() - begin <= times:
+                if self.is_live_service(p):
+                    self.log4py.info("appium server 端口为{}的服务已经启动".format(p))
+                    # 服务启动正常，就写入配置文件
+                    self.cfg.set_appium_uuid_port(self.device_list[i], self.appium_port_list[i])
+                    break
+                self.log4py.info("appium server 端口为{}的服务未启动".format(p))
 
+    def start_services(self):
+        """
+        根据appium端口、链接手机端口、手机serialno表示，创建一个服务器;启动有些延迟
+        需要将appium和手机sno放到文件中供初始化driver使用，xml、ini、conf、json文件格式都行
+        20171218 现在考虑一个问题：是否在没有设备连接的时候就把这个服务启动起来？
+        如果启动了：写入配置的内容如何定义？后续有设备连接上了，如果刷新配置文件中的内容？
+        最终还是没有设备就不启动了（或者给个开关也行）
+        """
+        self.device_list = self.__get_devices()
+        if self.device_list is None or len(self.device_list) <= 0:
+            self.log4py.debug("当前没有设备连接到pc，无法进行appium服务端口的映射，无法启动对应的服务")
+            return None
+
+        service_list = self.__generate_service_command()
+        # 启动服务
+        if len(service_list) > 0:
+            for i in service_list:
+                self.log4py.info("通过线程启动服务的命令：{}".format(service_list[i]))
+                t1 = RunServer(service_list[i])
+                p = Process(target=t1.start())
+                p.start()
+                # 20171221 等待5秒钟，等待一下进程
+                time.sleep(5)

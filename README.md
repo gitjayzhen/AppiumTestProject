@@ -114,7 +114,9 @@ apk的安装包路径、app的启动activity、app的首页activity<br>
 2. 测试脚本设计的一个建议，在创建线程前，先实例化appium服务，这时候通过配置文件来获取sno和port，
 随后有了唯一设备的driver，然后就去执行脚本
 
-## 
+## 20171221
+1. 优化了启动后台appium服务的逻辑，及采用了线程方式来执行启动服务的命令。
+2. 多机执行将会使用multiprocessing.Pool.map_async(caseFunc, driverList)
 ## 20170710  待完成
 1. demo一个短信生成器
 2. demo一个联系人生成器（联系人的存储形式要不同）  

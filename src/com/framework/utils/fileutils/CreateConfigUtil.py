@@ -23,14 +23,12 @@ class CreateConfigFile(object):
         self.log4py = LoggingController()
         self.path = (os.getcwd()).split('src')[0] + "\\testconfig"
 
-    def set_appium_uuid_port(self, device_list, port_list):
+    def set_appium_uuids_ports(self, device_list, port_list):
         """
         遍历list,按照下表进行对应映射
         :param device_lsit: 手机uuid
         :param port_list: pc启动的appium服务端口
-        :return: 
         """
-
         f_path = self.create_config_file(self.path)
 
         if len(device_list) > 0 and len(port_list) > 0:
@@ -40,10 +38,34 @@ class CreateConfigFile(object):
                 key = filed
                 value = port_list[i]
                 # 因为是覆盖写入，没有section，需要先添加再设置, 初始化的服务都加一个run的标识
-                # TODO(jayzhen_testing@163.com) 首次启动adb服务的时候，会出现*字符，需要加一个容错机制
                 self.cfg.add_section(filed)
                 self.cfg.set(filed, key, value)
                 self.cfg.set(filed, "run", "0")
+            self.cfg.write(open(f_path, 'wb'))
+            self.log4py.debug("设备sno与appium服务端口映射已写入appiumService.ini配置文件:{}--{}".format(key, value))
+
+    def set_appium_uuid_port(self, device, port):
+        """
+        如果这样一个一个的写入到配置文件中，是追加还是覆盖？如果是覆盖的，服务启动完成后就剩一个配置，所以不行
+        如果是追加，需要判断配置文件中是否已经有了相同的section，有就更新，没有就添加
+        :param device: 手机uuid
+        :param port pc启动的appium服务端口
+        """
+        f_path = os.path.join(self.path, 'appiumService.ini')
+        if not os.path.exists(f_path):
+            os.makedirs(f_path)
+        if device is not None and port is not None:
+            self.cfg.read(f_path)
+            sec = device
+            key = sec
+            value = port
+            if sec in self.cfg.sections():
+                self.cfg.set(sec, key, value)
+                self.cfg.set(sec, "run", "0")
+            else:
+                self.cfg.add_section(sec)
+                self.cfg.set(sec, key, value)
+                self.cfg.set(sec, "run", "0")
             self.cfg.write(open(f_path, 'wb'))
             self.log4py.debug("设备sno与appium服务端口映射已写入appiumService.ini配置文件:{}--{}".format(key, value))
 

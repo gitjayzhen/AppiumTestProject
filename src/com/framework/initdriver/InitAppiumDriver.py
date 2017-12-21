@@ -41,7 +41,7 @@ class InitDriverOption(object):
                     device_info["platformVersion"] = (res.split(': ')[-1].strip())[1:-1]
                 elif re.search(r"ro\.product\.model", res):
                     device_info["deviceName"] = (res.split(': ')[-1].strip())[1:-1]
-                if "platformVersion" in device_info.keys() and  "deviceName" in device_info.keys():
+                if "platformVersion" in device_info.keys() and "deviceName" in device_info.keys():
                     break
         except Exception, e:
             self.log4py.error("获取手机信息时出错 :" + str(e))
@@ -68,6 +68,27 @@ class InitDriverOption(object):
             self.log4py.debug("{}设备对应的appium未启动".format(sno))
             return None
 
+    def is_port_used(self, port_num):
+        """
+        检查端口是否被占用
+        netstat -aon | findstr port 能够获得到内容证明端口被占用
+        """
+        flag = False
+        try:
+            port_res = subprocess.Popen('netstat -ano | findstr %s | findstr LISTENING' % port_num, shell=True, stdout=subprocess.PIPE,
+                                        stderr=subprocess.PIPE).stdout.readlines()
+            reg = re.compile(str(port_num))
+            for i in range(len(port_res)):
+                ip_port = port_res[i].strip().split("   ")
+                if re.search(reg, ip_port[1]):
+                    flag = True
+                    self.log4py.info(str(port_num) + " 端口已经被占用." + str(port_res))
+            if not flag:
+                self.log4py.info(str(port_num) + " 端口没有被占用." + str(port_res))
+        except Exception, e:
+            self.log4py.error(str(port_num) + " port get occupied status failure: " + str(e))
+        return flag
+
     def before_create_driver(self, sno):
         """
         在实例appium driver前，进行设备的操作：安装、卸载
@@ -89,7 +110,8 @@ class InitDriverOption(object):
         desired_caps = self.get_desired_capabilities(sno)
         self.before_create_driver(desired_caps['udid'])
         port = self.get_appium_port(desired_caps["udid"])
-        if not port or port is None:
+        if not self.is_port_used(port):
+            self.log4py.debug("设备号[{}]对应的appium服务没有启动".format(desired_caps['udid']))
             return None
         url = 'http://127.0.0.1:%s/wd/hub' % (port.strip())
         num = 0
@@ -98,7 +120,7 @@ class InitDriverOption(object):
                 driver = webdriver.Remote(url, desired_caps)
             except urllib2.URLError as e:
                 self.log4py.error("连接appium服务，实例化driver时出错，尝试重连...({})".format(num))
-                num = num +1
+                num = num + 1
                 continue
             if self.run_data["wait_activity"] is not None:
                 driver.wait_activity(self.run_data["wait_activity"], 10)

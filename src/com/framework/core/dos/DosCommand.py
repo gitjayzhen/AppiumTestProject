@@ -7,10 +7,10 @@
 @contact: jayzhen_testing@163.com
 @site: http://blog.csdn.net/u013948858
 @software: PyCharm
-"""
-"""
+
 执行window下特定的dos命令:包括并发执行appium脚本后的关闭启动的端口。
 """
+
 import subprocess
 from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 

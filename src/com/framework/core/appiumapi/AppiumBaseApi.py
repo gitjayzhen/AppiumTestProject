@@ -274,7 +274,7 @@ class AppiumDriver(object):
     def webList_random_select_by_option(self,by,value,timeout):
         isSucceed = False
         timeBegins = time.time()
-        while(time.time() - timeBegins <= timeout):
+        while time.time() - timeBegins <= timeout:
             try:
                 webselect = self.driver.find_element(by, value)
                 selectElement = (webselect)

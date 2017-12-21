@@ -19,7 +19,7 @@ def file_end_with(*endstring):
     ends = endstring
 
     def run(s):
-        f = map(s.endswith,ends)
+        f = map(s.endswith, ends)
         if True in f:
             return s
     return run
@@ -28,16 +28,17 @@ def file_end_with(*endstring):
 def san_path(abs_path, end_string):
     backfunc= file_end_with(end_string)
     for filepath, dirs, filelist in os.walk(abs_path):
-        if not re.search("\.git",filepath):
-            f_file = filter(backfunc,filelist)
+        if not re.search("\.git", filepath):
+            f_file = filter(backfunc, filelist)
             for i in f_file:
-                print os.path.join(filepath,i)
+                print os.path.join(filepath, i)
 
 
 if __name__ == '__main__':
-    print os.getcwd()
-    san_path(os.getcwd(), '.py')
-
+    # path = os.getcwd().split("AppiumTestProject")[0]
+    # san_path(path, '.py')
+    f = file_end_with("json")
+    print f("str.json")
 
 
 

@@ -45,25 +45,26 @@ class LoggingController(object):
         relative_path = filename.split("AppiumTestProject")[1]
         relative_path = relative_path.replace("/", ".")
         relative_path = relative_path.replace("\\", ".")
-        return "[%s] [%s] [%s - %s - %s] %s" % (self.time_now_formate(), level, relative_path, lineNo, functionName, message)
+        relative_path = relative_path.replace(".", "", 1)
+        return "%s %s %s %s - %s" % (self.time_now_formate(), level, relative_path, lineNo, message)
 
     def info(self, message):
-        message = self.get_log_message("info", message)
+        message = self.get_log_message("INFO", message)
         self.__loggers[logging.INFO].info(message)
 
     def error(self, message):
-        message = self.get_log_message("error", message)
+        message = self.get_log_message("ERROR", message)
         self.__loggers[logging.ERROR].warning(message)
 
     def warning(self, message):
-        message = self.get_log_message("warning", message)
+        message = self.get_log_message("WARNING", message)
         self.__loggers[logging.WARNING].warning(message)
 
     def debug(self, message):
-        message = self.get_log_message("debug", message)
+        message = self.get_log_message("DEBUG", message)
         self.__loggers[logging.DEBUG].debug(message)
 
     def critical(self, message):
-        message = self.get_log_message("critical", message)
+        message = self.get_log_message("CRITICAL", message)
         self.__loggers[logging.CRITICAL].critical(message)
 
