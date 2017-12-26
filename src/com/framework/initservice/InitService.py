@@ -29,7 +29,7 @@ class RunServer(threading.Thread):
     def run(self):
         # 20170802 尽可能使用subprocess代替os.system执行命令，避免一些错误
         # os.system(i)
-        # fp = open("D:/backup/OneDrive/programs/mobile/AppiumTestProject/testresult/logs4appium/933733961f382.txt", 'a')
+        # fp = open("AppiumTestProject/testresult/logs4appium/933733961f382.txt", 'a')
         # 20171219 可以使用fp对象传给stdout
         p = subprocess.Popen(self.cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         p.wait()
@@ -42,8 +42,10 @@ class ServicePort(object):
         path_obj = GetAllPathController()
         self.appium_log_path = path_obj.get_appium_logs_path()
         self.appium_port_list = []
+        self.bootstrap_port_list = []
         self.device_list = []
         self.cfg = CreateConfigFile()
+        self.tmp = {}
 
     def is_port_used(self, port_num):
         """
@@ -59,7 +61,8 @@ class ServicePort(object):
                 ip_port = port_res[i].strip().split("   ")
                 if re.search(reg, ip_port[1]):
                     flag = True
-                    self.log4py.info(str(port_num) + " 端口已经被占用,进程是：" + str(port_res))
+                    self.log4py.info(str(port_num) + " 端口已经在使用,对应的进程是：" + str(ip_port[-1]))
+                    self.tmp[port_num] = ip_port[-1]
             if not flag:
                 self.log4py.info(str(port_num) + " 端口没有被占用.")
         except Exception, e:
@@ -78,7 +81,7 @@ class ServicePort(object):
         根据链接电脑的设备来创建num个端口号（整形） 电脑有0-65535个端口
         """
         new_port_list = []
-        while (len(new_port_list) != num):
+        while len(new_port_list) != num:
             if port_start >= 0 and port_start <= 65535:
                 if not self.is_port_used(port_start):
                     new_port_list.append(port_start)
@@ -125,22 +128,20 @@ class ServicePort(object):
         :return 是一个以端口号为key的dict
         """
         self.appium_port_list = self.__get_port_list(4490)
-        bootstrap_port_list = self.__get_port_list(2233)
+        self.bootstrap_port_list = self.__get_port_list(2233)
         # 20170804 将service_cmd list类型换成dict --> {port:cmd,port1:cmd2} ,port留作执行cmd后的端口校验
         service_cmd = {}
         for i in range(len(self.device_list)):
             # 20170802 命令中如果带有路径尽量使用斜杠，不使用反斜杠（win环境中是单个），如使用记得变成双斜杠
             # appium_path = 'start /b node D:/Android/Appium/node_modules/appium/lib/server/main.js -p '
             # 这两个方式都可以在后台启动一个appium的服务
-            # "start /b appium -p "
-            cmd = "start /b appium -p " + str(self.appium_port_list[i]) + " -a 127.0.0.1" + " -bp " + str(bootstrap_port_list[i]) + " -U " + str(self.device_list[i]) + " >" + str(self.appium_log_path) + str(self.device_list[i]) + ".txt"
+            cmd = "start /b appium -p " + str(self.appium_port_list[i]) + " -a 127.0.0.1" + " -bp " + str(self.bootstrap_port_list[i]) + " -U " + str(self.device_list[i]) + " >" + str(self.appium_log_path) + str(self.device_list[i]) + ".txt"
             service_cmd[str(self.appium_port_list[i])] = cmd
         return service_cmd
 
     def kill_service_on_pid(self, pid):
         if pid is not None:
-            pid = pid.split()[-1]
-            os.system("taskkill /F /PID %s" % pid)
+            os.system("taskkill -F -PID %s" % pid)
             self.log4py.info("PID：%s 关闭端口服务成功" % pid)
 
     def stop_all_appium_server(self):
@@ -151,12 +152,14 @@ class ServicePort(object):
         """
         c = CreateConfigFile()
         server_list = c.get_all_appium_server_port()
-        if len(server_list) > 0:
-            for i in range(len(server_list)):
-                self.log4py.info("准备关闭端口 %s 的服务" % server_list[i])
-                pid = self.is_live_service(server_list[i])
-                if pid:
-                    self.kill_service_on_pid(pid)
+        if len(server_list) <= 0:
+            self.log4py.debug("请你确认是否有appium服务启动")
+            return None
+
+        for i in range(len(server_list)):
+            self.log4py.info("准备关闭端口 %s 的服务" % server_list[i])
+            if self.is_live_service(server_list[i]):
+                self.kill_service_on_pid(self.tmp[server_list[i]])
 
     def check_service(self, times=5):
         # 检查服务是否已经启动
@@ -165,9 +168,9 @@ class ServicePort(object):
             p = self.appium_port_list[i]
             while time.time() - begin <= times:
                 if self.is_live_service(p):
-                    self.log4py.info("appium server 端口为{}的服务已经启动".format(p))
+                    self.log4py.info("appium server 端口为{}的服务已经启动,bootstrap监听的端口也已设置好".format(p))
                     # 服务启动正常，就写入配置文件
-                    self.cfg.set_appium_uuid_port(self.device_list[i], self.appium_port_list[i])
+                    self.cfg.set_appium_uuid_port(self.device_list[i], self.appium_port_list[i], self.bootstrap_port_list[i])
                     break
                 self.log4py.info("appium server 端口为{}的服务未启动".format(p))
 

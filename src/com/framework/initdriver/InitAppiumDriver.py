@@ -82,9 +82,9 @@ class InitDriverOption(object):
                 ip_port = port_res[i].strip().split("   ")
                 if re.search(reg, ip_port[1]):
                     flag = True
-                    self.log4py.info(str(port_num) + " 端口已经被占用." + str(port_res))
+                    self.log4py.info(str(port_num) + " 端口的服务已经启动." )
             if not flag:
-                self.log4py.info(str(port_num) + " 端口没有被占用." + str(port_res))
+                self.log4py.info(str(port_num) + " 端口的服务未启动.")
         except Exception, e:
             self.log4py.error(str(port_num) + " port get occupied status failure: " + str(e))
         return flag
@@ -114,6 +114,8 @@ class InitDriverOption(object):
             self.log4py.debug("设备号[{}]对应的appium服务没有启动".format(desired_caps['udid']))
             return None
         url = 'http://127.0.0.1:%s/wd/hub' % (port.strip())
+        self.log4py.debug(url)
+        self.log4py.debug(desired_caps)
         num = 0
         while num <= 5:
             try:

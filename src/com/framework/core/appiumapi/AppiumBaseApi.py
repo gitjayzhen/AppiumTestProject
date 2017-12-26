@@ -103,7 +103,7 @@ class AppiumDriver(object):
         time_begins = time.time()
         if timeout is None or timeout == "":
             timeout = 3
-        while ((time.time() - time_begins) <= timeout):
+        while time.time() - time_begins <= timeout:
             try:
                 element = self.driver.find_element(by, value)
                 is_succeed = True
@@ -331,15 +331,25 @@ class AppiumDriver(object):
         element.clear()
         self.log4py.debug("element [ " + element + " ] cleared")
 
-    def do_click(self, by, value):
+    def do_click(self, by, value, times=3):
         '''
          * rewrite the click method, adding user defined log</BR>
          * 与工具原生API作用完全一致，只是增加了操作结果检查和日志记录。
          * @param element:the webelement you want to operate    '''
-        self.driver.implicitly_wait(2)
-        element = self.findElements(by,value,3)
+        element = self.find_element_by_want(by,value,times)
+        if element is None:
+            self.log4py.debug("没有找到对应的元素：{}".format(str(value)))
+            return
         element.click()
         self.log4py.debug("click on element [ " + str(element) + " ] ")
+
+    def do_sendkeys(self, by, value, txt):
+        element = self.find_element_by_want(by, value, 3)
+        if element is None:
+            self.log4py.debug("没有找到对应的元素：{}".format(str(value)))
+            return
+        element.send_keys(txt)
+        self.log4py.debug("send key to element [ " + str(element) + " ] ")
 
     def do_swipe_up(self, driver, duration_time):
         # 操作屏幕向上滑动
@@ -485,7 +495,7 @@ class AppiumDriver(object):
         try:
             self.driver.get_screenshot_as_file(filepath)
         except Exception, e:
-            self.log4py.error("保存屏幕截图失败，失败信息："+e)
+            self.log4py.error("保存屏幕截图失败，失败信息："+ str(e))
 
     def operation_check(self, method_name, is_succeed):
         '''

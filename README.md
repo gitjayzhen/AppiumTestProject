@@ -29,7 +29,10 @@
 4. 代码弱耦合<br>
 5. 逻辑强内聚<br>
 6. 减小创建的次数<br>
-
+7. APP监控了常用的men,cpu,fps<br>
+8. 设备重连机制<br>
+9. 邮件发送excel的测试报告<br>
+10. 支持多设备andoird并行<br>
 
 ### 配置文件化-关于路径的操作
 pathconfig.ini中的配置所需项的相对路径，通过getallpath调用configcommonctl来解析拿到数据数据，getallpath作为对外接口
@@ -49,10 +52,13 @@ pathconfig.ini中的配置所需项的相对路径，通过getallpath调用confi
 ## 20170513
 1. 如何进行多台设备进行同时执行？通过命令启动服务<br>
     命令行参数：
-    >-p：监听端口  
-    -bp：(Android-only) 连接设备的端口号  
-    -U: 连接物理设备的唯一设备标识符  
-    
+    >-p:是指定监听的端口（也可写成 --port），也可以修改为你需要的端口；
+    -bp:(Android-only) 连接设备的端口号是连接Android设备bootstrap的端口号，默认是4724（也可写成--bootstrap-port）
+    -U:连接物理设备的唯一设备标识符，是连接的设备名称，如"adb devices"获取的设备标识（也可写成--udid）
+    --chromedriver-port:是chromedriver运行需要指定的端口号，默认是9515
+    -a:是指定监听的ip（也可写成 --address），后面“127.0.0.1”可以改为你需要的ip地址；
+    --session-override:是指覆盖之前的session；
+
     启动对各服务端：
     >appium -p 4492 -bp 2251 -U udid_num  
     appium -p 4493 -bp 2252 -U udid_num2  
@@ -117,7 +123,5 @@ apk的安装包路径、app的启动activity、app的首页activity<br>
 ## 20171221
 1. 优化了启动后台appium服务的逻辑，及采用了线程方式来执行启动服务的命令。
 2. 多机执行将会使用multiprocessing.Pool.map_async(caseFunc, driverList)
-## 20170710  待完成
-1. demo一个短信生成器
-2. demo一个联系人生成器（联系人的存储形式要不同）  
-3. 测试一下notepad++的md功能
+3. 启动服务后将bootstrap对应的端口也写入配置文件中，以便关闭appium服务的时候同时关闭该端口
+## 对appium自动化框架的预想

@@ -53,7 +53,7 @@ class GetAllPathController(object):
         return None
 
     def get_capture_path(self):
-        self.log4py.info("executive -get_logs_path- function ")
+        self.log4py.info("executive get_logs_path function ")
         path = os.path.join(self.pro_path, self.cfgctl.get("capturePath", "capturePath"))
         if PATH(path):
             self.log4py.info("获取 %s" % path)
@@ -61,12 +61,11 @@ class GetAllPathController(object):
         return None
 
     def get_appium_logs_path(self):
-        self.log4py.info("executive -get_logs_path- function ")
+        self.log4py.info("executive  get_logs_path  function ")
         path = os.path.join(self.pro_path, self.cfgctl.get("appiumlogPath", "appiumlogPath"))
         if PATH(path):
             if not os.path.exists(path):
                 os.makedirs(path)
-            self.log4py.info("获取 %s" % path)
-
+            self.log4py.info("获取到appium服务的日志路径 %s" % path)
             return path.replace("\\", "/")
         return None

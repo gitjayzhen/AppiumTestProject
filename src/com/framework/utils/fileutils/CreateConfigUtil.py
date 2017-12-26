@@ -44,7 +44,7 @@ class CreateConfigFile(object):
             self.cfg.write(open(f_path, 'wb'))
             self.log4py.debug("设备sno与appium服务端口映射已写入appiumService.ini配置文件:{}--{}".format(key, value))
 
-    def set_appium_uuid_port(self, device, port):
+    def set_appium_uuid_port(self, device, port, bp):
         """
         如果这样一个一个的写入到配置文件中，是追加还是覆盖？如果是覆盖的，服务启动完成后就剩一个配置，所以不行
         如果是追加，需要判断配置文件中是否已经有了相同的section，有就更新，没有就添加
@@ -61,10 +61,12 @@ class CreateConfigFile(object):
             value = port
             if sec in self.cfg.sections():
                 self.cfg.set(sec, key, value)
+                self.cfg.set(sec, "bp", bp)
                 self.cfg.set(sec, "run", "0")
             else:
                 self.cfg.add_section(sec)
                 self.cfg.set(sec, key, value)
+                self.cfg.set(sec, "bp", bp)
                 self.cfg.set(sec, "run", "0")
             self.cfg.write(open(f_path, 'wb'))
             self.log4py.debug("设备sno与appium服务端口映射已写入appiumService.ini配置文件:{}--{}".format(key, value))
@@ -90,5 +92,6 @@ class CreateConfigFile(object):
             section_list = self.cfg.sections()
             for sl in section_list:
                 port_list.append(self.cfg.get(sl, sl))
+                port_list.append(self.cfg.get(sl, "bp"))
         return port_list
 
