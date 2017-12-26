@@ -52,11 +52,11 @@ pathconfig.ini中的配置所需项的相对路径，通过getallpath调用confi
 ## 20170513
 1. 如何进行多台设备进行同时执行？通过命令启动服务<br>
     命令行参数：
-    >-p:是指定监听的端口（也可写成 --port），也可以修改为你需要的端口；
-    -bp:(Android-only) 连接设备的端口号是连接Android设备bootstrap的端口号，默认是4724（也可写成--bootstrap-port）
-    -U:连接物理设备的唯一设备标识符，是连接的设备名称，如"adb devices"获取的设备标识（也可写成--udid）
-    --chromedriver-port:是chromedriver运行需要指定的端口号，默认是9515
-    -a:是指定监听的ip（也可写成 --address），后面“127.0.0.1”可以改为你需要的ip地址；
+    >-p:是指定监听的端口（也可写成 --port），也可以修改为你需要的端口；<br>
+    -bp:(Android-only) 连接设备的端口号是连接Android设备bootstrap的端口号，默认是4724（也可写成--bootstrap-port）<br>
+    -U:连接物理设备的唯一设备标识符，是连接的设备名称，如"adb devices"获取的设备标识（也可写成--udid）<br>
+    --chromedriver-port:是chromedriver运行需要指定的端口号，默认是9515<br>
+    -a:是指定监听的ip（也可写成 --address），后面“127.0.0.1”可以改为你需要的ip地址；<br>
     --session-override:是指覆盖之前的session；
 
     启动对各服务端：
