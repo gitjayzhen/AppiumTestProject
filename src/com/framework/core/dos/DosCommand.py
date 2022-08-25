@@ -36,7 +36,7 @@ class WindowCmder(object):
                 flog = False
             else:
                 self.log4py.error(str(port_num) + " port has been occupied.")
-        except Exception, e:
+        except Exception as e:
             self.log4py.error(str(port_num) + " port get occupied status failure: " + str(e))
         return flog
 

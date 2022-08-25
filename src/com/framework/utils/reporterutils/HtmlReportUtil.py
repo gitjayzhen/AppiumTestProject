@@ -35,9 +35,9 @@ def html_reporter():
             html_obj = open(file_path, "a") #打开文件   追加
             return html_obj
         else:
-            html_obj = file(file_path, "wb+")
+            html_obj = open(file_path, "wb+")
             return html_obj
-    except Exception, e:
+    except Exception as e:
         logger.error("创建html_reporter出现错误"+str(e))
 
 

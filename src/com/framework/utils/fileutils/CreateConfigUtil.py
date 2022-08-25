@@ -12,7 +12,7 @@ b.先判断是否存在固定的config文件，如果没有就创建；有，就
 c.循环遍历这个list并写入文件中
 """
 import os
-import ConfigParser
+from configparser import ConfigParser
 from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-# -*-coding=utf8 -*-
+# -*-coding: utf8 -*-
+
 """
 @version: v1.0
 @author: jayzhen
@@ -8,15 +9,16 @@
 @site: http://blog.csdn.net/u013948858
 @software: PyCharm
 """
+
 import os
 import re
 
 
 class ApkController(object):
 
-    '''
+    """
     初始化就先确认存放apk文件的路径,通过config目录的中apk path文件来获取配置文件中path。
-    '''
+    """
     def __init__(self):
         # absp = os.getcwd()
         absp = "C:\\"
@@ -57,7 +59,7 @@ class ApkController(object):
             abspath = os.path.join(self.result_dir,apkName)
             if not os.path.exists(abspath):
                 return None
-        except TypeError,e:
+        except TypeError as e:
             return None
         return abspath
 
@@ -76,16 +78,16 @@ class ApkController(object):
                 res = re.findall(regc,res)
                 if res is not None and len(res) >0:
                     pname = str(res[0])
-                print ">>> the apk's package name is [%s]"%pname
+                print(">>> the apk's package name is [%s]"%pname)
                 return pname
             else:
                 return None
-        except Exception,e:
-            print "An error occurred environment variable on aapt"
+        except Exception as e:
+            print("An error occurred environment variable on aapt")
     '''
     使用python的os中的remove方法来删除指定路径的文件，删除之前先判断是否存在该文件。
     '''
-    def delete_apk(self,apkpath):
+    def delete_apk(self, apkpath):
         ap = apkpath
         if os.path.exists(ap):
             os.remove(ap)

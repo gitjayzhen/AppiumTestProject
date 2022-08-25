@@ -10,20 +10,22 @@
 """
 # 需要安装pychartdir模块
 import string
+import os
 from com.framework.core.adb.AdbCommand import AdbCmder
 from pychartdir import *
 
 
-class AppPerformanceMonitor():
-    def  __init__(self,sno,times,pkg_name):
+class AppPerformanceMonitor:
+
+    def __init__(self,sno,times,pkg_name):
         # 打开待测应用，运行脚本，默认times为30次（可自己手动修改次数），获取该应用cpu、memory占用率的曲线图，图表保存至chart目录下
         self.utils = AdbCmder()
         self.sno = sno
-        if times is None or time == "":
+        if times is None or times == "":
             self.times = 30        #top次数
         else:
             self.times = string.atoi(times)
-            if self.times < 15 and self.times > 0:
+            if 15 > self.times > 0:
                 self.times = 20
         if pkg_name is None or pkg_name == "":
             self.pak_name = self.utils.get_current_package_name(sno)

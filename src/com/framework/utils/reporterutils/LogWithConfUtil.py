@@ -27,21 +27,21 @@ class LoggingController(object):
 
     def debug(self, mag):
         mag = self.getLogMessage(mag)
-        print self.D.handlers
+        print(self.D.handlers)
         self.D.debug(mag)
 
     def info(self, mag):
         mag = self.getLogMessage(mag)
-        print self.I.handlers
+        print(self.I.handlers)
         self.I.info(mag)
 
     def warn(self, mag):
         mag = self.getLogMessage(mag)
-        print self.W.handlers
+        print(self.W.handlers)
         self.W.warning(mag)
 
     def error(self, mag):
         mag = self.getLogMessage(mag)
-        print self.E.handlers
+        print(self.E.handlers)
         self.E.error(mag)
 

@@ -14,7 +14,7 @@ import os
 import re
 import time
 import subprocess
-import urllib2
+from urllib.error import URLError
 
 from appium import webdriver
 from com.framework.initdriver.InitConfig import InitConfiger
@@ -43,7 +43,7 @@ class InitDriverOption(object):
                     device_info["deviceName"] = (res.split(': ')[-1].strip())[1:-1]
                 if "platformVersion" in device_info.keys() and "deviceName" in device_info.keys():
                     break
-        except Exception, e:
+        except Exception as e:
             self.log4py.error("获取手机信息时出错 :" + str(e))
             return None
         desired_caps_conf = self.run_cfg.get_desired_caps_conf()
@@ -85,7 +85,7 @@ class InitDriverOption(object):
                     self.log4py.info(str(port_num) + " 端口的服务已经启动." )
             if not flag:
                 self.log4py.info(str(port_num) + " 端口的服务未启动.")
-        except Exception, e:
+        except Exception as e:
             self.log4py.error(str(port_num) + " port get occupied status failure: " + str(e))
         return flag
 
@@ -120,7 +120,7 @@ class InitDriverOption(object):
         while num <= 5:
             try:
                 driver = webdriver.Remote(url, desired_caps)
-            except urllib2.URLError as e:
+            except URLError as e:
                 self.log4py.error("连接appium服务，实例化driver时出错，尝试重连...({})".format(num))
                 num = num + 1
                 continue

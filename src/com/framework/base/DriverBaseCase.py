@@ -17,6 +17,7 @@ from com.framework.util.ConfigCommonManager import Config
 import time
 import os
 
+
 class WebDriverDoBeforeTest():
 
     def __init__(self):
@@ -104,7 +105,7 @@ class WebDriverDoBeforeTest():
     def captureScreenshot(self, filepath):
         try:
             self.driver.get_screenshot_as_file(filepath)
-        except Exception, e:
+        except Exception as e:
             self.logger.error("保存屏幕截图失败，失败信息："+str(e))
 
     '''

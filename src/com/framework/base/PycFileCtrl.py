@@ -31,14 +31,14 @@ def san_path(abs_path, end_string):
         if not re.search("\.git", filepath):
             f_file = filter(backfunc, filelist)
             for i in f_file:
-                print os.path.join(filepath, i)
+                print(os.path.join(filepath, i))
 
 
 if __name__ == '__main__':
     # path = os.getcwd().split("AppiumTestProject")[0]
     # san_path(path, '.py')
     f = file_end_with("json")
-    print f("str.json")
+    print(f("str.json"))
 
 
 

@@ -15,7 +15,7 @@ from com.framework.core.adb.AdbCommand import AdbCmder
 from com.framework.utils.reporterutils.LoggingUtil import LoggingController
 
 
-class DeviceController():
+class DeviceController:
     def __init__(self):
         self.android = AdbCmder()
         self.log4py = LoggingController()
@@ -40,7 +40,7 @@ class DeviceController():
                 sno,phone_brand,phone_model,os_version,ram,dpi,image_resolution,ip = self.get_info(sno)
                 info[sno] = {"phone_brand":phone_brand,"phone_model":phone_model,"ram":ram,"os_version":os_version,"dpi":dpi,"image_resolution":image_resolution,"ip":ip}
             return info
-        except TypeError,e:
+        except TypeError as e:
             self.log4py.error(e)
             return None
 
@@ -102,6 +102,6 @@ class DeviceController():
             else:
                 image_resolution = "NULL"
             return sno,phone_brand,phone_model,os_version,str(ram)+"GB",dpi.strip(),image_resolution,ip.strip()
-        except Exception,e:
+        except Exception as e:
             self.log4py.error("Get device info happend ERROR :"+ str(e))
             return None

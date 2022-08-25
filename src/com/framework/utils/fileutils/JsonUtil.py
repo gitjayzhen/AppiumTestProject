@@ -26,7 +26,7 @@ class JsonParser(object):
         try:
             json_obj = json.load(fin)
             self.log4py.info("加载了%s文件"%json_file_path)
-        except ValueError, e:
+        except ValueError as e:
             json_obj = {}
         fin.close()
         return json_obj
@@ -43,12 +43,12 @@ class JsonParser(object):
                     json_obj[k] = dict_data[k]
                     n += 1
             if n == 0 :
-                print "该设备的数据已存在"
+                print("该设备的数据已存在")
                 return None
             self.log4py.info(dict_data)
             with open(self.json_file_path,'w+') as json_f_obj:
                 json_f_obj.write(json.dumps(json_obj,sort_keys=True,indent =4,separators=(',', ': '),encoding="gbk",ensure_ascii=True))
-        except Exception,e:
+        except Exception as e:
             self.log4py.error("JsomParser func happend error")
         else:
             self.log4py.info("device info collect work has done, go to check json file")

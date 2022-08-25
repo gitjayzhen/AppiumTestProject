@@ -11,7 +11,7 @@
 1.对ini配置文件进行读取操作
 """
 import sys
-import ConfigParser
+from configparser import ConfigParser
 
 
 class ConfigController(object):

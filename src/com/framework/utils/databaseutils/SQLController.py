@@ -55,7 +55,7 @@ class MySQLController(object):
                 self.logger.debug("%s添加成功"%sql)
                 self.conn.commit()  #执行成功后向数据库进行提交
                 return True 
-        except Exception, e:
+        except Exception as e:
             self.conn.rollback()
             self.logger.error("插入数据出现错误"+str(e))
         finally:
@@ -70,7 +70,7 @@ class MySQLController(object):
                 self.logger.debug("%s删除成功"%sql)
                 self.conn.commit()
                 return True
-        except Exception,e:
+        except Exception as e:
             self.conn.rollback()
             self.logger.error("删除数据出现错误"+str(e))
         finally:
@@ -85,7 +85,7 @@ class MySQLController(object):
                 self.logger.debug("%s更新失败" % sql )
                 self.conn.commit()
                 return True
-        except Exception,e:
+        except Exception as e:
             self.conn.rollback()
             self.logger.error("更新数据出现错误"+str(e))
         finally:

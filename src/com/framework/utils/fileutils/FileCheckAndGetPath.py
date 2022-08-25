@@ -14,9 +14,11 @@
 """
 
 import datetime
+import filecmp
 import os
 import time
 from com.framework.utils.reporterutils.LoggingUtil import LoggingController
+
 
 class FileChecKController():
 
@@ -45,12 +47,12 @@ class FileChecKController():
         try:
             for filep, dirs, filelist in os.walk(path):
                 for fl in filelist:
-                    if cmp(fl, filename) == 0:    #这个字符串的比较存在风险，python3不支持，待修改
+                    if filecmp.cmp(fl, filename) == 0:    #这个字符串的比较存在风险，python3不支持，待修改
                         self.__fileabspath = os.path.join(filep, fl)
                         self.__logger.info("查找的%s文件存在" %filename)
                         return True
             return False
-        except Exception, e:
+        except Exception as e:
             self.__logger.error("check_has_file()方法出现异常"+ str(e))
 
     '''

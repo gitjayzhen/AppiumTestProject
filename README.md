@@ -7,9 +7,9 @@
 ## 工程依赖及版本号：
 1. node (6.10.2)<br>
 2. appium (1.4.16)<br>
-3. Python (2.7.13)<br>
+3. Python (3.7)<br>
 4. selenium (3.4.1)<br>
-5. Appium-Python-Client (0.24)<br>
+5. Appium-Python-Client (2.6.1)<br>
 
 
 # 时间轴

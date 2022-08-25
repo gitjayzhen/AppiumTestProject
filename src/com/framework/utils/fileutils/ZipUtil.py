@@ -11,7 +11,7 @@
 import os
 import ZipUtil
 
-#解压zip文件 
+# 解压zip文件
 def unzip(): 
     source_zip = "c:\\update\\SW_Servers_20120815.zip"
     target_dir = "c:\\update\\"

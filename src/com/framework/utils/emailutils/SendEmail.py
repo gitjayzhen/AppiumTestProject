@@ -52,8 +52,7 @@ class EmailController(object):
             smtpObj.sendmail(self.sender, self.receiver, msgRoot.as_string())
             self.log4py.debug("SendEmail_withFile邮件发送成功")
             smtpObj.close()
-        except Exception,e:
-            print e
+        except Exception as e:
             self.log4py.error("Error: 无法发送邮件::"+str(e))
             
     def send_email_with_file(self):
@@ -83,8 +82,7 @@ class EmailController(object):
             smtpObj.sendmail(self.sender, self.receiver, message.as_string())
             self.log4py.debug("SendEmail_withFile邮件发送成功")
             smtpObj.close()
-        except Exception ,e:
+        except Exception as e:
             self.log4py.error("Error: 无法发送邮件::"+str(e))
-            print e
-            
+
     

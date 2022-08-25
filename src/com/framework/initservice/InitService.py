@@ -65,7 +65,7 @@ class ServicePort(object):
                     self.tmp[port_num] = ip_port[-1]
             if not flag:
                 self.log4py.info(str(port_num) + " 端口没有被占用.")
-        except Exception, e:
+        except Exception as e:
             self.log4py.error(str(port_num) + " port get occupied status failure: " + str(e))
         return flag
 
@@ -107,7 +107,7 @@ class ServicePort(object):
                     self.device_list.append(line.split()[0])
                 else:
                     break
-        except Exception, e:
+        except Exception as e:
             self.log4py.error("启动appium前查询连接的设备情况，发生错误：{}".format(str(e)))
         return self.device_list
 

@@ -14,6 +14,8 @@
 import tempfile
 import os
 import shutil
+from functools import reduce
+
 from PIL import Image
 from com.framework.core.adb.AdbCommand import AdbCmder
 
@@ -56,7 +58,7 @@ class ImageController(object):
             load = Image.open(imageName)
             return load
         else:
-            print "image is not exist"
+            print("该设备的数据已存在")
 
     def subImage(self, box):
         """

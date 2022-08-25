@@ -18,10 +18,6 @@ import string
 import EventKeys
 import json
 
-reload(sys)
-sys.setdefaultencoding('utf8')
-
-
 class AdbCmder(object):
     """
     利用可变参数来初始化*（tuple），**（dict）:约定参数中的key只能是sno
@@ -472,7 +468,7 @@ class AdbCmder(object):
             if i != "":
                 out.append(i)
         length = len(out)
-        for i in xrange(length):
+        for i in range(length):
             self.shell("input text %s" % out[i])
             if i != length - 1:
                 self.sendKeyEvent(EventKeys.SPACE)
@@ -549,7 +545,7 @@ class AdbCmder(object):
     def do_capture_window(self):
         self.shell("rm /sdcard/screenshot.png").wait()
         self.shell("/system/bin/screencap -p /sdcard/screenshot.png").wait()
-        print ">>>截取屏幕成功，在桌面查看文件。"
+        print(">>>截取屏幕成功，在桌面查看文件。")
         c_time = time.strftime("%Y_%m_%d_%H-%M-%S")
         self.adb('pull /sdcard/screenshot.png T:\\%s.png"'%c_time).wait()
 
@@ -558,21 +554,21 @@ class AdbCmder(object):
         sdk = string.atoi(self.shell("getprop ro.build.version.sdk").stdout.read())
         try:
             times = string.atoi(times)
-        except ValueError, e:
-            print ">>>Value error because you enter value is not int type, use default 'times=20s'"
+        except ValueError as e:
+            print(">>>Value error because you enter value is not int type, use default 'times=20s'")
             times = int(20)
         if sdk >= 19:
                 self.shell("screenrecord --time-limit %d /data/local/tmp/screenrecord.mp4" % times).wait()
-                print ">>>Get Video file..."
+                print(">>>Get Video file...")
                 time.sleep(1.5)
                 path = PATH(path)
                 if not os.path.isdir(path):
                     os.makedirs(path)
                 self.adb("pull /data/local/tmp/screenrecord.mp4 %s" % PATH("%s/%s.mp4" % (path, self.timestamp()))).wait()
                 self.shell("rm /data/local/tmp/screenrecord.mp4")
-                print ">>>ok"
+                print(">>>ok")
         else:
-            print "sdk version is %d, less than 19!" % sdk
+            print("sdk version is %d, less than 19!" % sdk)
             sys.exit(0)
 
     def get_crash_log(self):
@@ -587,7 +583,7 @@ class AdbCmder(object):
             time_list.append(" ".join(temp_time))
 
         if time_list is None or len(time_list) <= 0:
-            print ">>>No crash log to get"
+            print(">>>No crash log to get")
             return None
         log_file = "T://Exception_log_%s.txt" % self.timestamp()
         f = open(log_file, "wb")
@@ -595,7 +591,7 @@ class AdbCmder(object):
             cash_log = self.shell(timel).stdout.read()
             f.write(cash_log)
         f.close()
-        print ">>>check local file"
+        print(">>>check local file")
 
     def get_permission_list(self, package_name):
         PATH = lambda p: os.path.abspath(p)
@@ -604,8 +600,9 @@ class AdbCmder(object):
         for permission in result_list:
             permission_list.append(permission.strip())
         pwd = os.path.join(os.getcwd(),"gui_controller\\scriptUtils")
-        permission_json_file = file("%s\\permission.json"%pwd)
+        permission_json_file = open("%s\\permission.json"%pwd, "r")
         file_content = json.load(permission_json_file)["PermissList"]
+        permission_json_file.close()
         name = "_".join(package_name.split("."))
         f = open(PATH("%s\\%s_permission.txt" %(pwd,name)), "w")
         f.write("package: %s\n\n" %package_name)
@@ -613,7 +610,7 @@ class AdbCmder(object):
             for permission_dict in file_content:
                 if permission == permission_dict["Key"]:
                     f.write(permission_dict["Key"] + ":\n  " + permission_dict["Memo"] + "\n")
-        f.close
+        f.close()
 
     def timestamp(self):
         return time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
@@ -622,7 +619,7 @@ class AdbCmder(object):
         """
         获取当前Activity的控件树
         """
-        print xml_path
+        print(xml_path)
         PATH = lambda a: os.path.abspath(a)
         if int(self.get_sdk_version()) >= 19:
             self.shell("uiautomator dump --compressed /data/local/tmp/uidump.xml").wait()

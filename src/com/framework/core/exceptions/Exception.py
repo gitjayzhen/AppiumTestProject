@@ -9,7 +9,9 @@
 @software: PyCharm
 """
 
+
 class ScriptException(Exception):
+
     def __init__(self, str_param):
         self.str_param = str_param
 

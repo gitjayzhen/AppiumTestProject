@@ -44,7 +44,7 @@ class AppiumDriver(object):
         try:
             is_displayed = self.driver.find_element(by, value).is_displayed()
             self.log4py.debug("element [ " + str(value) + " ] displayed? " + str(is_displayed))
-        except Exception, e:
+        except Exception as e:
             self.log4py.error("element元素没有点位到"+str(e))
         return is_displayed
 
@@ -69,7 +69,7 @@ class AppiumDriver(object):
                 isSucceed = True
                 self.log4py.debug("find element [" + value+ "] success")
                 break
-            except Exception,e:
+            except Exception as e:
                 self.log4py.error(e)
             self.pause(self.pauseTime)
         self.operationCheck("isElementPresent", isSucceed)
@@ -88,7 +88,7 @@ class AppiumDriver(object):
                 self.driver.switch_to_alert()
                 isSucceed = True
                 break
-            except Exception,e:
+            except Exception as e:
                 self.log4py.error(e)
         self.operationCheck("isAlertExists", isSucceed)
         return isSucceed
@@ -109,7 +109,7 @@ class AppiumDriver(object):
                 is_succeed = True
                 self.log4py.debug("find element [" + str(value) + "] success")
                 break
-            except Exception, e:
+            except Exception as e:
                 self.log4py.error(str(e))
                 self.log4py.debug("find element [" + str(value) + "] failure")
         self.operation_check("find_element_by_want", is_succeed)
@@ -130,7 +130,7 @@ class AppiumDriver(object):
                 is_succeed = True
                 self.log4py.debug("find elements [" + str(value) + "] success")
                 break
-            except Exception, e:
+            except Exception as e:
                 self.log4py.error(e)
         self.operation_check("find_elements", is_succeed)
         return elements
@@ -161,7 +161,7 @@ class AppiumDriver(object):
     def do_pause(self, millisecond):
         try:
             time.sleep(millisecond)
-        except Exception, e:
+        except Exception as e:
             self.log4py.error("pause error:"+str(e))
 
     def get(self, url, actionCount):
@@ -177,7 +177,7 @@ class AppiumDriver(object):
                 self.driver.get(url)
                 self.__log4py.debug("navigate to url [ " + url + " ]")
                 break
-            except Exception,e:
+            except Exception as e:
                 self.__log4py.error(e)
         self.operationCheck("get", isSucceed)
 
@@ -285,7 +285,7 @@ class AppiumDriver(object):
                 isSucceed = True
                 self.log4py.debug("item selected by item value [ " + itemValue+ " ] on [ " + str(by) + " ]")
                 break
-            except Exception,e:
+            except Exception as e:
                 self.log4py.error(e)
             self.pause(self.pauseTime)
         self.operationCheck("webList_RandomSelectByOption", isSucceed)
@@ -299,7 +299,7 @@ class AppiumDriver(object):
                 select.select_by_value(itemValue)
                 self.log4py.debug("item selected by item value [ " + itemValue+ " ] on [ " + value + " ]")
                 isSucceed = True
-        except Exception,e:
+        except Exception as e:
             self.log4py.error(e)
         self.operationCheck("selectByValue", isSucceed)
 
@@ -315,7 +315,7 @@ class AppiumDriver(object):
         try:
             self.driver.switch_to_alert().accept()
             self.log4py.debug("切换到弹窗，并点击确定按钮")
-        except Exception, e:
+        except Exception as e:
             self.log4py.error("接受弹窗，出现异常："+str(e))
 
     def get_screen_size(self):
@@ -359,7 +359,7 @@ class AppiumDriver(object):
         y_start = int(size_screen[1] * 0.75)
         y_end = int(size_screen[0] * 0.25)
         self.driver.swipe(x_start, y_start, x_end, y_end, duration_time)
-        print "log:action swipe up:(%d,%d)-(%d,%d)" % (x_start, y_start, x_end, y_end)
+        print("log:action swipe up:(%d,%d)-(%d,%d)" % (x_start, y_start, x_end, y_end))
 
     # 操作屏幕向下滑动
     def do_swipe_down(self, driver, duration_time):
@@ -369,7 +369,7 @@ class AppiumDriver(object):
         y_start = int(size_screen[1] * 0.25)
         y_end = int(size_screen[0] * 0.75)
         self.driver.swipe(x_start, y_start, x_end, y_end, duration_time)
-        print "log:action swipe down:(%d,%d)-(%d,%d)" % (x_start, y_start, x_end, y_end)
+        print("log:action swipe down:(%d,%d)-(%d,%d)" % (x_start, y_start, x_end, y_end))
 
     # 操作屏幕向左←滑动
     def do_swipe_left(self, driver, duration_time):
@@ -379,7 +379,7 @@ class AppiumDriver(object):
         x_start = int(size_screen[1] * 0.75)
         x_end = int(size_screen[0] * 0.25)
         self.driver.swipe(x_start, y_start, x_end, y_end, duration_time)
-        print "log:action swipe left:(%d,%d)-(%d,%d)" % (x_start, y_start, x_end, y_end)
+        print("log:action swipe left:(%d,%d)-(%d,%d)" % (x_start, y_start, x_end, y_end))
 
     # 操作屏幕向右→滑动
     def do_swipe_right(self, driver, duration_time):
@@ -389,7 +389,7 @@ class AppiumDriver(object):
         x_start = int(size_screen[1] * 0.25)
         x_end = int(size_screen[0] * 0.75)
         self.driver.swipe(x_start, y_start, x_end, y_end, duration_time)
-        print "log:action swipe right:(%d,%d)-(%d,%d)" % (x_start, y_start, x_end, y_end)
+        print("log:action swipe right:(%d,%d)-(%d,%d)" % (x_start, y_start, x_end, y_end))
 
     def do_tap_element(self, elemnt):
         """Perform a tap action on the element
@@ -494,7 +494,7 @@ class AppiumDriver(object):
          * @return 无    '''
         try:
             self.driver.get_screenshot_as_file(filepath)
-        except Exception, e:
+        except Exception as e:
             self.log4py.error("保存屏幕截图失败，失败信息："+ str(e))
 
     def operation_check(self, method_name, is_succeed):
