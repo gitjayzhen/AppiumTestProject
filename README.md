@@ -1,29 +1,55 @@
 # AppiumTestProject
-<p> &nbsp; &nbsp; &nbsp; &nbsp;Appium自动化测试工具，比较好用的自动化工具，你值得学习。这个工程主要是个人对appium和Python理解的一个应用，可使用该工程进行app自动化测试。
-工程还在一点一点的完善，补充的内容也一点一点的在时间轴中详细描述，工程具体的流程和代码逻辑可以自行review，代码中有相应的注释，如有需要也可以联系我 （邮箱：jayzhen_testing@163.com） ，希望你能通过这个工程获得一些你想获取的东西。
-</P>
+
+>从 2017 年后没再更新了，2022 再出发
+
+`Appium` 自动化测试工具，比较好用的自动化工具，值得学习和研究。这个工程主要是个人对 `Appium` 结合 `Python` 
+在 C 端进行自动化实施上理解的一个应用方案，可通过和使用该工程进行 app 自动化测试学习和研究。
+工程还在一点一点的完善，补充的内容也一点一点的在时间轴中详细描述，工程具体的流程和代码逻辑可以
+自行 review，代码中有相应的注释，如有需要也可以联系我 （邮箱：jayzhen_testing@163.com） ，
+希望你能通过这个工程获得一些你想获取的东西。
+
+## 对于实施 UI 自动化前的技术选型考虑角度
+
+>不限于此
+
+1. 脚本录制与回放
+2. 脚本语言（是否支持团队技术基础上的语言）
+3. 资源修改
+4. 数据驱动
+5. 数据驱动脚本自动转换
+6. 组件自动同步
+7. 模糊识别
+8. 组件识别扩展
+9. 动态检查（页面动态渲染）
+10. 脚本扩展
+11. 检查点
+12. 识别组件对位置的依赖
+13. 调试功能
+14. 关键字驱动
 
 
 ## 工程依赖及版本号：
-1. node (6.10.2)<br>
-2. appium (1.4.16)<br>
-3. Python (3.7)<br>
-4. selenium (3.4.1)<br>
-5. Appium-Python-Client (2.6.1)<br>
+
+1. node (6.10.2)  
+2. appium (1.4.16)
+3. Python (3.7)
+4. selenium (3.4.1)
+5. Appium-Python-Client (2.6.1) 
 
 
-# 时间轴
+# 内容更新
+
 ## 20170321
-- 需求：添加adb cmd的api<br>
-- 项目下路径：/src/com/framework/ui_test_api/adb/commond.py<br>
-- 需求概述：将adb 调试命令<br>
 
+- 需求：添加adb cmd的api
+- 项目下路径：/src/com/framework/ui_test_api/adb/commond.py
+- 需求概述：将adb 调试命令
 
 ## 20170329
-需求：封装appium基础的底层api, 在整个测试用例的编写过程，<br>
-项目下路径：<br>
-需求概述：<br>
-1. 超时处理<br>
+需求：封装appium基础的底层api, 在整个测试用例的编写过程  
+项目下路径：
+需求概述：
+1. 超时处理 
 2. 异常处理<br>
 3. 日志记录<br>
 4. 代码弱耦合<br>
@@ -52,9 +78,9 @@ pathconfig.ini中的配置所需项的相对路径，通过getallpath调用confi
 ## 20170513
 1. 如何进行多台设备进行同时执行？通过命令启动服务<br>
     命令行参数：
-    >-p:是指定监听的端口（也可写成 --port），也可以修改为你需要的端口；<br>
-    -bp:(Android-only) 连接设备的端口号是连接Android设备bootstrap的端口号，默认是4724（也可写成--bootstrap-port）<br>
-    -U:连接物理设备的唯一设备标识符，是连接的设备名称，如"adb devices"获取的设备标识（也可写成--udid）<br>
+    >-p: 是指定监听的端口（也可写成 --port），也可以修改为你需要的端口；<br>
+    -bp: (Android-only) 连接设备的端口号是连接Android设备bootstrap的端口号，默认是4724（也可写成--bootstrap-port）<br>
+    -U: 连接物理设备的唯一设备标识符，是连接的设备名称，如"adb devices"获取的设备标识（也可写成--udid）<br>
     --chromedriver-port:是chromedriver运行需要指定的端口号，默认是9515<br>
     -a:是指定监听的ip（也可写成 --address），后面“127.0.0.1”可以改为你需要的ip地址；<br>
     --session-override:是指覆盖之前的session；
