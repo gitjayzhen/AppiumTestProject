@@ -11,7 +11,7 @@ __pycache__/
 .idea/
 testresult/
 src/test_framework/
-src/test_project/
+test_project/
 env/
 build/
 develop-eggs/

@@ -30,19 +30,27 @@
 
 ## 工程依赖及版本号：
 
-1. node (6.10.2)  
-2. appium (1.4.16)
+1. appium (1.22.3-4)
 3. Python (3.7)
 4. selenium (3.4.1)
-5. Appium-Python-Client (2.6.1) 
+5. [Appium-Python-Client (2.6.1)](https://appium.io/docs/en/about-appium/api/)
 
 
 # 内容更新
 
+## 2017.01.31
+1.关于 appium 的通信服务如可通过代码进行开启、关闭、重启？
+2.如何监控设备的链接状态？容错处理获取到的手机可用信息
+3.app 版本迭代是否会影响到 Uiautomator Viewer的控件ID的获取？
+
+## 2017.02.28
+1.appium设计主链路功能UI测试的框架（数据驱动、关键字驱动）
+2.实现测试过程中的性能数据收集
+
 ## 20170321
 
-- 需求：添加adb cmd的api
-- 项目下路径：/src/com/framework/ui_test_api/adb/commond.py
+- 需求：添加 adb cmd 的api
+- 项目下路径：framework/ui_test_api/adb/commond.py
 - 需求概述：将adb 调试命令
 
 ## 20170329
@@ -61,19 +69,17 @@
 10. 支持多设备andoird并行<br>
 
 ### 配置文件化-关于路径的操作
-pathconfig.ini中的配置所需项的相对路径，通过getallpath调用configcommonctl来解析拿到数据数据，getallpath作为对外接口
-提供最直接的操作
 
+pathconfig.ini中的配置所需项的相对路径，通过 getallpath 调用 configcommonctl 来解析拿到数据数据，getallpath作为对外接口
+提供最直接的操作
 
 ## 20170405
 1. 第一封装层的api，不应该有超过3复杂度的设计<br>
 2. 上层如果存在单一的逻辑直接写入底并提供调用方法
 
-
 ## 20170508
 1. 使用mysqldb操作数据库<br>
 2. 使用xlrd、xlwt和xlutils操作Excel文件
-
 
 ## 20170513
 1. 如何进行多台设备进行同时执行？通过命令启动服务<br>
