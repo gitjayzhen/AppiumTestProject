@@ -26,7 +26,6 @@
 13. 调试功能
 14. 关键字驱动
 
-
 ## 项目依赖及环境准备
 
 1. Python (3.7)
@@ -35,7 +34,7 @@
 
 - 环境准备
 
-1. appium (1.22.3-4)
+1. [appium (1.22.3-4)](https://github.com/appium/appium-desktop/releases/tag/v1.22.3-4)
 2. miniconda ( 4.9.0)
 3. adb
 
